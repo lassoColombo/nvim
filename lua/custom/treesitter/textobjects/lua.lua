@@ -1,0 +1,50 @@
+require('nvim-treesitter.configs').setup {
+  textobjects = {
+    select = {
+      enable = true,
+      set_jumps = true,
+      lookahead = true,
+      keymaps = {
+        ['aa'] = { query = '@assignment.outer', desc = 'Select outer part of an assignment' },
+        ['ia'] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
+        ['la'] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
+        ['ra'] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignment' },
+        ['ap'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument' },
+        ['ip'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter/argument' },
+        ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of a conditional' },
+        ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of a conditional' },
+        ['al'] = { query = '@loop.outer', desc = 'Select outer part of a loop' },
+        ['il'] = { query = '@loop.inner', desc = 'Select inner part of a loop' },
+        ['af'] = { query = '@call.outer', desc = 'Select outer part of a function call' },
+        ['if'] = { query = '@call.inner', desc = 'Select inner part of a function call' },
+        ['am'] = { query = '@function.outer', desc = 'Select outer part of a method/function definition' },
+        ['im'] = { query = '@function.inner', desc = 'Select inner part of a method/function definition' },
+        ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class' },
+        ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        [']m'] = { query = '@function.outer', desc = ']Next [M]ethod' },
+        [']c'] = { query = '@class.outer', desc = ']Next [C]lass' },
+        [']l'] = { query = '@loop.outer', desc = ']Next [L]oop' },
+        [']i'] = { query = '@conditional.outer', desc = ']Next []Conditional' },
+        [']a'] = { query = '@assignment.outer', desc = ']Next []Assignment' },
+        [']p'] = { query = '@parameter.outer', desc = ']Next [A]rgument' },
+      },
+      goto_previous_start = {
+        ['[m'] = { query = '@function.outer', desc = ']Prev [M]ethod' },
+        ['[c'] = { query = '@class.outer', desc = ']Prev [C]lass' },
+        ['[l'] = { query = '@loop.outer', desc = ']Prev [L]oop' },
+        ['[i'] = { query = '@conditional.outer', desc = ']Prev []Conditional' },
+        ['[a'] = { query = '@assignment.outer', desc = ']Prev []Assignment' },
+        ['[p'] = { query = '@parameter.outer', desc = ']Prev [A]rgument' },
+      },
+    },
+    swap = {
+      enable = false,
+    },
+  },
+}
