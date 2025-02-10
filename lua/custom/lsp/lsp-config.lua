@@ -42,8 +42,7 @@ return { -- LSP Configuration & Plugins
       yamlls = require 'custom.lsp.configs.yamlls',
       jsonls = require 'custom.lsp.configs.jsonls',
       taplo = require 'custom.lsp.configs.taplo',
-      sqls = require 'custom.lsp.configs.sqls',
-      -- ansiblels = require 'custom.lsp.configs.ansiblels',
+      ansiblels = require 'custom.lsp.configs.ansiblels',
       jinja_lsp = require 'custom.lsp.configs.jinja_lsp',
       gopls = {},
     }
@@ -70,7 +69,7 @@ return { -- LSP Configuration & Plugins
       -- bash
       'bashls',
       -- sql
-      'sqls',
+      'sqlls',
       'sqlfmt',
       -- docker
       'dockerls',
@@ -87,6 +86,7 @@ return { -- LSP Configuration & Plugins
       -- go
       'gopls',
       'goimports',
+      'golangci-lint',
       -- html
       'html',
     })

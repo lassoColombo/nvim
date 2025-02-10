@@ -57,7 +57,8 @@ return {
           return
         end
         -- Disable autoformat on certain filetypes
-        local ignore_filetypes = { 'sql' }
+        local ignore_filetypes = { --[[ 'sql' ]]
+        }
         if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
           return
         end
@@ -75,8 +76,8 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        sql = { 'sqlfmt' },
-        mysql = { 'sqlfmt' },
+        sql = { 'sql_formatter' },
+        mysql = { 'sql_formatter' },
         yaml = { 'prettier' },
         json = { 'prettier' },
         go = { 'gofmt', 'goimports' },
@@ -91,30 +92,9 @@ return {
     require('conform').formatters.black = {
       prepend_args = { '--line-length', '150' },
     }
+    require('conform').formatters.sql_formatter = {
+      prepend_args = { '--config', vim.fn.expand '~/.config/sql_formatter/.sql-formatter.json' },
+    }
     return opts
-    -- :NOTE: old user commands to toggle autoformat
-    --
-    -- disable
-    -- vim.api.nvim_create_user_command('FormatDisable', function(args)
-    --   vim.g.autoformat_on_save = true
-    --   vim.notify('set autoformat on save to ' .. tostring(not vim.g.autoformat_on_save), vim.log.levels.INFO)
-    -- end, {
-    --   desc = 'Disable autoformat-on-save',
-    -- })
-    -- -- enable
-    -- vim.api.nvim_create_user_command('FormatEnable', function()
-    --   vim.g.autoformat_on_save = false
-    --   vim.notify('set autoformat on save to ' .. tostring(not vim.g.autoformat_on_save), vim.log.levels.INFO)
-    -- end, {
-    --   desc = 'Enable autoformat-on-save',
-    -- })
-    -- -- toggle
-    -- vim.api.nvim_create_user_command('FormatToggle', function(args)
-    --   local log_level = (vim.g.autoformat_on_save and vim.log.levels.WARN or vim.log.levels.INFO)
-    --   vim.g.autoformat_on_save = not vim.g.autoformat_on_save
-    --   vim.notify('set autoformat on save to ' .. tostring(not vim.g.autoformat_on_save), vim.log.levels.INFO)
-    -- end, {
-    --   desc = 'Toggle autoformat on save',
-    -- })
   end,
 }

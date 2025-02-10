@@ -12,7 +12,7 @@ return {
           diagnostic.code = diagnostic.message_id
         end,
       },
-      null_ls.builtins.diagnostics.ansiblelint,
+      -- null_ls.builtins.diagnostics.ansiblelint,
       null_ls.builtins.diagnostics.golangci_lint,
       null_ls.builtins.code_actions.ts_node_action,
       null_ls.builtins.diagnostics.djlint,
