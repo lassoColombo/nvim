@@ -22,6 +22,8 @@ return { -- Highlight, edit, and navigate code
     require('nvim-treesitter.configs').setup {
       ensure_installed = {
         'bash',
+        'nu',
+        'html',
         'lua',
         'go',
         'http',
