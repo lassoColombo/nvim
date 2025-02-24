@@ -55,7 +55,6 @@
   "render-markdown": { "branch": "main", "commit": "2a9e0ab6043bfb4996ce6a6a35594ab357e5d299" },
   "snacks.nvim": { "branch": "main", "commit": "04d4bd74758652deb466d24aaa53f0272798c9cd" },
   "sqlite.lua": { "branch": "master", "commit": "b487fcc8937b683942a1f7d9662fcf50ca5acd58" },
-  "sqls.nvim": { "branch": "main", "commit": "a514379f5f89bf72955ed3bf5c1c31a40b8a1472" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
