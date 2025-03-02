@@ -36,6 +36,7 @@ return { -- LSP Configuration & Plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    local ex = vim.fn.expand
     local servers = {
       lua_ls = require 'custom.lsp.configs.luals',
       pyright = require 'custom.lsp.configs.pyright',
@@ -43,14 +44,9 @@ return { -- LSP Configuration & Plugins
       jsonls = require 'custom.lsp.configs.jsonls',
       taplo = require 'custom.lsp.configs.taplo',
       jinja_lsp = require 'custom.lsp.configs.jinja_lsp',
-      gopls = {
-        settings = {
-          gopls = {
-            buildFlags = { '-tags=quality' },
-          },
-        },
-      },
-      ansiblels = {},
+      gopls = require 'custom.lsp.configs.gopls',
+      ansiblels = require 'custom.lsp.configs.ansiblels',
+      sqls = require 'custom.lsp.configs.sqls',
     }
 
     require('mason').setup()
@@ -75,7 +71,7 @@ return { -- LSP Configuration & Plugins
       -- bash
       'bashls',
       -- sql
-      'sqlls',
+      -- 'sqlls',
       'sqlfmt',
       -- docker
       'dockerls',
