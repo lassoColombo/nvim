@@ -3,7 +3,6 @@ return {
   event = 'VeryLazy',
   dependencies = {
     { 'tpope/vim-dadbod', lazy = true },
-    { 'kristijanhusak/vim-dadbod-completion', lazy = true },
   },
   ft = { 'sql', 'mysql', 'plsql', 'mongo', 'redis' },
   cmd = {

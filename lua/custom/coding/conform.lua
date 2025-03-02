@@ -76,24 +76,23 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        sql = { 'sql_formatter' },
-        mysql = { 'sql_formatter' },
+        sql = { 'sqlfmt' },
+        mysql = { 'sqlfmt' },
         yaml = { 'prettier' },
         json = { 'prettier' },
-        go = { 'gofmt', 'goimports' },
         -- Conform can also run multiple formatters sequentially
-        -- go = { 'goimports', 'gofumpt' },
+        go = { 'gofmt', 'goimports' },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
       },
     }
-    -- puntual configuration
+    -- formatters default configuration
     require('conform').formatters.black = {
-      prepend_args = { '--line-length', '150' },
+      prepend_args = { '--line-length', '160' },
     }
-    require('conform').formatters.sql_formatter = {
-      prepend_args = { '--config', vim.fn.expand '~/.config/sql_formatter/.sql-formatter.json' },
+    require('conform').formatters.sqlfmt = {
+      prepend_args = { '-l', '20' },
     }
     return opts
   end,

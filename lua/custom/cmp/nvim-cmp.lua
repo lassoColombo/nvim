@@ -72,11 +72,12 @@ return {
         },
       }),
     })
-    cmp.setup.filetype({ 'sql', 'mysql' }, {
-      sources = {
-        { name = 'vim-dadbod-completion' },
-        { name = 'buffer' },
-      },
-    })
+    -- as of now lsp completion is enough
+    -- cmp.setup.filetype({ 'sql', 'mysql' }, {
+    --   sources = {
+    --     -- { name = 'vim-dadbod-completion' },
+    --     { name = 'buffer' },
+    --   },
+    -- })
   end,
 }
