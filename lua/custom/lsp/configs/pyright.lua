@@ -9,14 +9,16 @@ return {
     },
   },
   settings = {
+    disableOrganizeImports = true,
     python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = 'off',
-        typeCheckingMode = 'basic',
-        useLibraryCodeForTypes = true,
-        diagnosticSeverityOverrides = {},
-      },
+      ignore = { '*' },
+      -- analysis = {
+      --   autoSearchPaths = true,
+      --   diagnosticMode = 'off',
+      --   typeCheckingMode = 'basic',
+      --   useLibraryCodeForTypes = true,
+      --   diagnosticSeverityOverrides = {},
+      -- },
     },
   },
 }

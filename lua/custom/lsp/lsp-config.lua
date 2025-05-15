@@ -2,6 +2,19 @@ return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
+    {
+      -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+      -- used for completion, annotations and signatures of Neovim apis
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = {
+          -- Load luvit types when the `vim.uv` word is found
+          { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        },
+      },
+    },
+    { 'Bilal2453/luvit-meta', lazy = true },
     -- Automatically install LSPs and related tools to stdpath for neovim
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
@@ -47,6 +60,7 @@ return { -- LSP Configuration & Plugins
       gopls = require 'custom.lsp.configs.gopls',
       ansiblels = require 'custom.lsp.configs.ansiblels',
       sqls = require 'custom.lsp.configs.sqls',
+      ruff = {},
     }
 
     require('mason').setup()
@@ -58,11 +72,8 @@ return { -- LSP Configuration & Plugins
       'lua_ls',
       'stylua',
       -- python
+      'ruff',
       'pyright',
-      'pylint',
-      'black',
-      'isort',
-      'jinja-lsp',
       -- yaml
       'yamlls',
       'prettier',

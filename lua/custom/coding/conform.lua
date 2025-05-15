@@ -75,13 +75,13 @@ return {
 
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'isort', 'black' },
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         sql = { 'sqlfmt' },
         mysql = { 'sqlfmt' },
         yaml = { 'prettier' },
         json = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
-        go = { 'gofmt', 'goimports' },
+        go = { 'golines', 'goimports', 'gofmt' },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
@@ -89,10 +89,10 @@ return {
     }
     -- formatters default configuration
     require('conform').formatters.black = {
-      prepend_args = { '--line-length', '160' },
+      -- prepend_args = { '--line-length', '160' },
     }
     require('conform').formatters.sqlfmt = {
-      prepend_args = { '-l', '20' },
+      prepend_args = { '-l', '80' },
     }
     return opts
   end,

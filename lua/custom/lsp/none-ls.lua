@@ -7,11 +7,11 @@ return {
     local null_ls = require 'null-ls'
 
     local sources = {
-      null_ls.builtins.diagnostics.pylint.with {
-        diagnostics_postprocess = function(diagnostic)
-          diagnostic.code = diagnostic.message_id
-        end,
-      },
+      -- null_ls.builtins.diagnostics.pylint.with {
+      --   diagnostics_postprocess = function(diagnostic)
+      --     diagnostic.code = diagnostic.message_id
+      --   end,
+      -- },
       -- null_ls.builtins.diagnostics.ansiblelint,
       null_ls.builtins.diagnostics.golangci_lint,
       null_ls.builtins.code_actions.ts_node_action,
