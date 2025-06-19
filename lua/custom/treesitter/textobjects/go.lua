@@ -9,8 +9,8 @@ require('nvim-treesitter.configs').setup {
         ['ia'] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
         ['la'] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
         ['ra'] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignment' },
-        ['ap'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument' },
-        ['ip'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter/argument' },
+        ['ar'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument' },
+        ['ir'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter/argument' },
         ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of a conditional' },
         ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of a conditional' },
         ['al'] = { query = '@loop.outer', desc = 'Select outer part of a loop' },
@@ -32,7 +32,7 @@ require('nvim-treesitter.configs').setup {
         [']l'] = { query = '@loop.outer', desc = ']Next [L]oop' },
         [']i'] = { query = '@conditional.outer', desc = ']Next []Conditional' },
         [']a'] = { query = '@assignment.outer', desc = ']Next []Assignment' },
-        [']p'] = { query = '@parameter.outer', desc = ']Next [A]rgument' },
+        [']r'] = { query = '@parameter.outer', desc = ']Next [A]rgument' },
       },
       goto_previous_start = {
         ['[m'] = { query = '@function.outer', desc = ']Prev [M]ethod' },
@@ -40,7 +40,7 @@ require('nvim-treesitter.configs').setup {
         ['[l'] = { query = '@loop.outer', desc = ']Prev [L]oop' },
         ['[i'] = { query = '@conditional.outer', desc = ']Prev []Conditional' },
         ['[a'] = { query = '@assignment.outer', desc = ']Prev []Assignment' },
-        ['[p'] = { query = '@parameter.outer', desc = ']Prev [A]rgument' },
+        ['[r'] = { query = '@parameter.outer', desc = ']Prev [A]rgument' },
       },
     },
     swap = {

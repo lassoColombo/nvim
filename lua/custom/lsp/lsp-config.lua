@@ -109,6 +109,10 @@ return { -- LSP Configuration & Plugins
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
+          -- Skip yaml-language-server to use yaml-companion
+          if server_name == 'yamlls' then
+            return
+          end
           local server = servers[server_name] or {}
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
