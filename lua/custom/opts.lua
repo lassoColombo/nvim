@@ -3,7 +3,7 @@
 -- vim.fn.sign_define('DiagnosticSignInfo', { text = '🔎', texthl = 'DiagnosticSignInfo' })
 -- vim.fn.sign_define('DiagnosticSignHint', { text = '🕯', texthl = 'DiagnosticSignHint' })
 
--- Set <space> as the leader key
+-- Set <;> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ';'
@@ -39,11 +39,11 @@ vim.diagnostic.config {
   },
 }
 
-local signs = { Error = 'E', Warn = 'W', Hint = 'H', Info = 'I' }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+--[[ local signs = { Error = 'E', Warn = 'W', Hint = 'H', Info = 'I' } ]]
+-- for type, icon in pairs(signs) do
+--   local hl = 'DiagnosticSign' .. type
+--   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+-- end
 
 -- hosts of programming languages installed with shims (asdf in my case)
 vim.g.python3_host_prog = '/Users/colombos/.asdf/shims/python'
@@ -122,7 +122,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- global disable_autoformat
 vim.g.autoformat_on_save = true

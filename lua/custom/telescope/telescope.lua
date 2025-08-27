@@ -42,6 +42,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
           },
         },
       },
+      -- vimgrep_arguments = {
+      --   'rg',
+      --   '--color=never',
+      --   '--no-heading',
+      --   '--with-filename',
+      --   '--line-number',
+      --   '--column',
+      --   '--smart-case',
+      --   '--hidden',
+      -- },
     }
     local builtin = require 'telescope.builtin'
     local telescope = require 'telescope.builtin'
