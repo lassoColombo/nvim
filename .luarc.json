@@ -1,9 +1,5 @@
 {
-    "diagnostics.disable": [
-        "unused-local"
-    ],
     "diagnostics.globals": [
-        "right_bracket"
-    ],
-    "completion.autoRequire": false
+        "Snacks"
+    ]
 }
