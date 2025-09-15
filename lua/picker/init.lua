@@ -109,6 +109,12 @@ function M.pick(prompt, src, onclose, opts)
       end
     end
     vim.cmd.stopinsert()
+    if pwin and vim.api.nvim_win_is_valid(pwin) then
+      vim.api.nvim_win_close(pwin, true)
+    end
+    if swin and vim.api.nvim_win_is_valid(swin) then
+      vim.api.nvim_win_close(swin, true)
+    end
     vim.api.nvim_buf_delete(pbuf, {})
     vim.api.nvim_buf_delete(sbuf, {})
     onclose(item, idx)

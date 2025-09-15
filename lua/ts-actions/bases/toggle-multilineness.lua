@@ -20,7 +20,7 @@ M.run = function(ft, bufnr, node, cfg)
       ) @field
   ]]
     )
-    -- Execute the query on the child node
+
     local matches = {}
     for id, match, metadata in query:iter_matches(child, 0, child:start(), child:end_()) do
       table.insert(matches, match)
