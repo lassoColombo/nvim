@@ -6,7 +6,7 @@ vim.keymap.set('n', '<leader>l', '<cmd>lopen<cr>', { desc = '[L]open' })
 vim.keymap.set({ 'n' }, '<tab>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
 vim.keymap.set({ 'n' }, '<tab>W', '<cmd>wa<cr><esc>', { desc = '[W]rite all buffers' })
 vim.keymap.set({ 'n' }, '<tab>dd', '<cmd>bd<cr><esc>', { desc = '[D]elete buffer' })
-vim.keymap.set('n', '<tab>qq', '<cmd>qa<cr>', { desc = '[Q]open' })
+vim.keymap.set('n', '<tab>qq', '<cmd>qa<cr>', { desc = '[Q]uit' })
 
 -- NOTE: does not work in terminal emulators
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
