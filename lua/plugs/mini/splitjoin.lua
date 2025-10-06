@@ -1,6 +1,6 @@
 return {
   mappings = {
-    toggle = '<tab>s',
+    toggle = '<leader><leader>s',
     split = '',
     join = '',
   },

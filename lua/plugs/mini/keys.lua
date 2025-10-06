@@ -83,7 +83,7 @@ vim.keymap.set('n', 'F', function()
 end, { desc = '[J]ump line' })
 
 -- indentscope
-vim.keymap.set('n', '<tab><tab>S', function()
+vim.keymap.set('n', '<leader><leader><leader>S', function()
   local state = vim.b.miniindentscope_disable or false
   vim.b.miniindentscope_disable = not state
   local level = state and vim.log.levels.INFO or vim.log.levels.WARN
@@ -91,8 +91,8 @@ vim.keymap.set('n', '<tab><tab>S', function()
 end, { desc = '[T]oggle indent[S]cope' })
 
 -- sessions
-vim.keymap.set('n', '<tab>ss', MiniSessions.read, { desc = '[S]ession [R]esume' })
-vim.keymap.set('n', '<tab>sd', function()
+vim.keymap.set('n', '<leader><leader>ss', MiniSessions.read, { desc = '[S]ession [R]esume' })
+vim.keymap.set('n', '<leader><leader>sd', function()
   local session_names = {}
   for name, _ in pairs(MiniSessions.detected) do
     table.insert(session_names, name)
@@ -104,14 +104,14 @@ vim.keymap.set('n', '<tab>sd', function()
     end
   end)
 end, { desc = '[S]ession [D]elete' })
-vim.keymap.set('n', '<tab>sl', function()
+vim.keymap.set('n', '<leader><leader>sl', function()
   local session_names = {}
   for name, _ in pairs(MiniSessions.detected) do
     table.insert(session_names, name)
   end
   vim.notify(vim.inspect(session_names))
 end, { desc = '[S]ession [L]ist' })
-vim.keymap.set('n', '<tab>si', function()
+vim.keymap.set('n', '<leader><leader>si', function()
   local session_names = {}
   for name, _ in pairs(MiniSessions.detected) do
     table.insert(session_names, name)
@@ -122,7 +122,7 @@ vim.keymap.set('n', '<tab>si', function()
     end
   end)
 end, { desc = '[S]ession [I]nspect' })
-vim.keymap.set('n', '<tab>sn', function()
+vim.keymap.set('n', '<leader><leader>sn', function()
   local cwd = vim.fn.getcwd()
   local dotted = cwd:gsub('/', '.')
   MiniSessions.write(dotted)

@@ -28,7 +28,7 @@ M.map = function(bufnr, client)
   vim.keymap.set('n', '<leader>S', vim.lsp.buf.workspace_symbol, { buffer = bufnr, desc = '[S]ymbols (workspace)' })
 
   if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
-    vim.keymap.set('n', '<tab><tab>h', function()
+    vim.keymap.set('n', '<leader><leader><leader>h', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr })
     end, { buffer = bufnr, desc = '[T]oggle Inlay [H]ints' })
   end

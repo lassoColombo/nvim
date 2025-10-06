@@ -55,7 +55,7 @@ cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'G
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 ]]
 
-  vim.keymap.set('n', '<leader><tab>', ':Grep ', { desc = '[]Clear' })
+  vim.keymap.set('n', '<leader><leader>g', ':Grep ', { desc = '[]Clear' })
 end
 
 return M

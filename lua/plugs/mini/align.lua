@@ -1,6 +1,6 @@
 return {
   mappings = {
-    start = '<tab>l',
-    -- start_with_preview = '<tab>L',
+    start = '<leader>leader',
+    -- start_with_preview = '<tab><tab>L',
   },
 }

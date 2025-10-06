@@ -1,12 +1,9 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = '[]Clear' })
-vim.keymap.set('n', '<leader>q', '<cmd>copen<cr>', { desc = '[Q]open' })
-vim.keymap.set('n', '<leader>l', '<cmd>lopen<cr>', { desc = '[L]open' })
 
 -- Buffer
-vim.keymap.set({ 'n' }, '<tab>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
-vim.keymap.set({ 'n' }, '<tab>W', '<cmd>wa<cr><esc>', { desc = '[W]rite all buffers' })
-vim.keymap.set({ 'n' }, '<tab>dd', '<cmd>bd<cr><esc>', { desc = '[D]elete buffer' })
-vim.keymap.set('n', '<tab>qq', '<cmd>qa<cr>', { desc = '[Q]uit' })
+vim.keymap.set({ 'n' }, '<leader><leader>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
+vim.keymap.set({ 'n' }, '<leader><leader>W', '<cmd>wa<cr><esc>', { desc = '[W]rite all buffers' })
+vim.keymap.set('n', '<leader><leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit' })
 
 -- NOTE: does not work in terminal emulators
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -33,23 +30,23 @@ local function toggle(opt, scope, state)
 end
 
 -- toggle wrap
-vim.keymap.set('n', '<tab><tab>w', function()
+vim.keymap.set('n', '<leader><leader><leader>w', function()
   toggle('wrap', 'wo')
 end, { desc = '[T]oggle line [W]rap' })
 
 -- toggle relative line numbers
-vim.keymap.set('n', '<tab><tab>n', function()
+vim.keymap.set('n', '<leader><leader><leader>n', function()
   toggle('relativenumber', 'wo')
 end, { desc = '[T]oggle relative line[N]umbers' })
 
 -- toggle line numbers
-vim.keymap.set('n', '<tab><tab>N', function()
+vim.keymap.set('n', '<leader><leader><leader>N', function()
   toggle('relativenumber', 'wo', false)
   toggle('number', 'wo')
 end, { desc = '[T]oggle line[N]umbers' })
 
 -- toggle diagnostics
-vim.keymap.set('n', '<tab><tab>d', function()
+vim.keymap.set('n', '<leader><leader><leader>d', function()
   if vim.diagnostic.is_enabled() then
     vim.diagnostic.enable(false)
   else

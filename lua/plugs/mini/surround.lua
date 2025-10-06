@@ -4,12 +4,12 @@ return {
   highlight_duration = 500,
 
   mappings = {
-    add = '<tab>a', -- Add surrounding in Normal and Visual modes
-    delete = '<tab>d', -- Delete surrounding
+    add = 'ga', -- Add surrounding in Normal and Visual modes
+    delete = 'gd', -- Delete surrounding
     -- find = '<tab>f', -- Find surrounding (to the right)
     -- find_left = '<tab>F', -- Find surrounding (to the left)
     -- highlight = '<tab>h', -- Highlight surrounding
-    replace = '<tab>r', -- Replace surrounding
+    replace = 'gr', -- Replace surrounding
     -- update_n_lines = '<tab>n', -- Update `n_lines`
 
     suffix_last = 'l', -- Suffix to search with "prev" method

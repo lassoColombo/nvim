@@ -60,7 +60,7 @@ return {
             luasnip.change_choice(1)
           end
         end, { 'i', 's' }),
-        ['<C-i>'] = cmp.mapping(function()
+        ['<C-u>'] = cmp.mapping(function()
           if luasnip.choice_active() then
             require 'luasnip.extras.select_choice'()
           end

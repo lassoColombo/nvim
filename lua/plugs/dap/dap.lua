@@ -26,7 +26,7 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<tab><tab>D', dapui.toggle, { desc = '[T]oggle [D]AP UI' })
+    vim.keymap.set('n', '<leader><leader><leader>D', dapui.toggle, { desc = '[T]oggle [D]AP UI' })
     vim.keymap.set('n', '<bs>c', dap.continue, { desc = 'DAP Continue/start' })
     vim.keymap.set('n', '<bs>i', dap.step_into, { desc = 'DAP step Into' })
     vim.keymap.set('n', '<bs>o', dap.step_over, { desc = 'DAP step Over' })

@@ -88,72 +88,27 @@ M.setup = function(opts)
     end,
   })
 
-  local ns = vim.api.nvim_create_namespace 'qfselect'
+  local function remove_current()
+    local idx = vim.fn.line '.'
+    local l = vim.fn.getqflist()
+    table.remove(l, idx)
+    vim.fn.setqflist(l, 'r')
+    vim.cmd 'copen'
 
-  local marked = {}
-
-  local function toggle_mark()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local cursor = vim.api.nvim_win_get_cursor(0)[1]
-
-    if not marked[bufnr] then
-      marked[bufnr] = {}
-    end
-
-    if marked[bufnr][cursor] then
-      marked[bufnr][cursor] = nil
-      vim.api.nvim_buf_clear_namespace(bufnr, ns, cursor - 1, cursor)
-    else
-      marked[bufnr][cursor] = true
-      vim.api.nvim_buf_add_highlight(bufnr, ns, 'Visual', cursor - 1, 0, -1)
-    end
-  end
-
-  local function show_marked()
-    vim.notify(vim.inspect(marked))
-  end
-  local function clear_marked()
-    marked = {}
-  end
-
-  local function new_list_from_marked()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local winid = vim.api.nvim_get_current_win()
-    local wininfo = vim.fn.getwininfo(winid)[1]
-
-    local items = (wininfo.loclist == 1) and vim.fn.getloclist(wininfo.winid) or vim.fn.getqflist()
-
-    local new_items = {}
-    for idx, _ in pairs(marked[bufnr] or {}) do
-      if items[idx] then
-        table.insert(new_items, items[idx])
-      end
-    end
-
-    if vim.tbl_isempty(new_items) then
-      print 'No items marked'
-      return
-    end
-
-    if wininfo.loclist == 1 then
-      vim.fn.setloclist(wininfo.winid, {}, ' ', { items = new_items })
-      vim.cmd 'lopen'
-    else
-      vim.fn.setqflist({}, ' ', { items = new_items })
-      vim.cmd 'copen'
-    end
+    local new_idx = math.max(idx - 1, 1)
+    vim.api.nvim_win_set_cursor(0, { new_idx, 0 })
   end
 
   vim.api.nvim_create_autocmd('FileType', {
+
     pattern = 'qf',
     callback = function(args)
-      local o = { buffer = args.buf, silent = true }
-      vim.keymap.set('n', '<C-space>', toggle_mark, o)
-      vim.keymap.set('n', '<C-y>', new_list_from_marked, o)
-      vim.keymap.set('n', '<C-s>', show_marked, o)
-      vim.keymap.set('n', '<C-x>', clear_marked, o)
+      vim.keymap.set('n', '<C-x>', remove_current, { buffer = args.buf, silent = true, desc = '[Q]delete current entry' })
     end,
   })
+
+  vim.keymap.set('n', '<leader>qq', '<cmd>copen<cr>', { desc = '[Q]open' })
+  vim.keymap.set('n', '<leader>ql', '<cmd>lopen<cr>', { desc = '[L]open' })
 end
 
 return M

@@ -55,7 +55,8 @@ M.setup = function(o)
 
     vim.api.nvim_win_set_option(win, 'winhl', 'Normal:' .. hl_group .. ',FloatBorder:' .. border_hl)
 
-    vim.cmd('echom ' .. vim.fn.string(msg))
+    -- breaks on multiline messages
+    -- vim.cmd('echom ' .. '"' .. vim.fn.string(msg) .. '"')
 
     local timeout = opts.timeout or 3000
     vim.defer_fn(function()

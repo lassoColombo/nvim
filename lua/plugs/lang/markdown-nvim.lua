@@ -8,7 +8,7 @@ return {
   end,
   keys = {
     {
-      '<tab><tab>r',
+      '<leader><leader><leader>r',
       '<cmd>RenderMarkdown toggle<cr>',
       mode = 'n',
       ft = { 'markdown' },

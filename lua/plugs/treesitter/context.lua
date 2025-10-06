@@ -2,7 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter-context',
   event = 'BufEnter',
   keys = {
-    vim.keymap.set('n', '<tab><tab>c', function()
+    vim.keymap.set('n', '<leader><leader><leader>c', function()
       local context = require 'treesitter-context'
       if context.enabled() then
         context.disable()

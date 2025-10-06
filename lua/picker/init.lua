@@ -397,6 +397,37 @@ function M.pick_grep_current_file()
   M.pick('GrepFile', grep_items, open_lsp_item, { text_cb = grep_item_text, live = true })
 end
 
+local function keymaps()
+  local modes = { 'n', 'i', 'v', 'x', 's', 'o', 't', 'c' }
+  local items = {}
+  for _, mode in ipairs(modes) do
+    for _, map in ipairs(vim.api.nvim_get_keymap(mode)) do
+      local lhs = map.lhs
+      local rhs = map.rhs ~= '' and map.rhs or map.callback and '<callback>' or ''
+      local desc = map.desc or ''
+      table.insert(items, {
+        mode = mode,
+        lhs = lhs,
+        rhs = rhs,
+        desc = desc,
+      })
+    end
+  end
+  return items
+end
+
+local function keymap_text(item)
+  return string.format('%s %-15s %-25s %s', item.mode, item.lhs, item.rhs, item.desc)
+end
+
+function M.pick_keymap()
+  M.pick('Keymap', keymaps(), function(item)
+    if item then
+      vim.notify(string.format('[%s] %s -> %s', item.mode, item.lhs, item.rhs), vim.log.levels.INFO)
+    end
+  end, { text_cb = keymap_text })
+end
+
 function M.setup()
   vim.ui.select = M.select
   vim.keymap.set('n', '<leader><bs>', M.pick_file)
@@ -414,6 +445,7 @@ function M.setup()
       vim.keymap.set('n', '<leader><leader>s', M.pick_document_symbol, opts 'Open symbol picker')
       vim.keymap.set('n', '<leader><leader>S', M.pick_workspace_symbol, opts 'Open workspace symbol picker')
       vim.keymap.set('n', '<leader><leader>g', M.pick_grep_current_file, { desc = 'Grep in current file' })
+      vim.keymap.set('n', '<leader><leader>k', M.pick_keymap, { desc = 'Open keymap picker' })
     end,
   })
 end

@@ -59,13 +59,13 @@ return {
   },
   keys = {
     {
-      '<tab>ia',
+      '<leader><leader>ia',
       ':CodeCompanion /buffer',
       mode = { 'n', 'v' },
       desc = ']AI Inline',
     },
     {
-      '<tab>ic',
+      '<leader><leader>ic',
       '<cmd>CodeCompanionChat<cr>',
       mode = { 'n', 'v' },
       desc = ']AI Chat',
