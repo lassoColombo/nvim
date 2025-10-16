@@ -31,23 +31,23 @@ return {
 
         -- Actions
         -- visual mode
-        map('v', '<leader>hs', function()
+        map('v', '<leader>gs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'git [s]tage hunk' })
-        map('v', '<leader>hr', function()
+        map('v', '<leader>gr', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'git [r]eset hunk' })
         -- normal mode
-        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
-        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
-        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-        map('n', '<leader>hu', gitsigns.stage_hunk, { desc = 'git [u]ndo stage hunk' })
-        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
-        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
-        map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
+        map('n', '<leader>gs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
+        map('n', '<leader>gr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
+        map('n', '<leader>gS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
+        map('n', '<leader>gu', gitsigns.stage_hunk, { desc = 'git [u]ndo stage hunk' })
+        map('n', '<leader>gR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
+        map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
+        map('n', '<leader>gb', gitsigns.blame_line, { desc = 'git [b]lame line' })
+        map('n', '<leader>gd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
 
-        map('n', '<leader>hD', function()
+        map('n', '<leader>gD', function()
           gitsigns.diffthis '@'
         end, { desc = 'git [D]iff against last commit' })
         -- Toggles
@@ -65,60 +65,3 @@ return {
     },
   },
 }
-
--- return {
---   'lewis6991/gitsigns.nvim',
---   opts = {
---     signs = {
---       add = { text = '+' },
---       change = { text = '~' },
---       delete = { text = '_' },
---       topdelete = { text = '‾' },
---       changedelete = { text = '~' },
---     },
---   },
---   keys = {
---     {
---       '<leader>gs',
---       '<cmd>Gitsigns stage_hunk<cr>',
---       mode = 'n',
---       desc = 'Git Stage hunk',
---     },
---     {
---       '<leader>gu',
---       '<cmd>Gitsigns undo_stage_hunk<cr>',
---       mode = 'n',
---       desc = 'Git Unstage hunk',
---     },
---     {
---       'gx',
---       '<cmd>Gitsigns reset_hunk<cr>',
---       mode = 'n',
---       desc = 'Git Reset hunk',
---     },
---     {
---       '<leader>gb',
---       '<cmd>Gitsigns blame<cr>',
---       mode = 'n',
---       desc = 'Git Blame',
---     },
---     {
---       ']g',
---       '<cmd>Gitsigns next_hunk<cr>',
---       mode = 'n',
---       desc = 'Next git hunk',
---     },
---     {
---       '[g',
---       '<cmd>Gitsigns prev_hunk<cr>',
---       mode = 'n',
---       desc = 'Prev git hunk',
---     },
---     {
---       '<leader>tg',
---       '<cmd>Gitsigns toggle_signs<cr>',
---       mode = 'n',
---       desc = 'Toggle Git signs',
---     },
---   },
--- }

@@ -3,7 +3,7 @@ return {
   name = 'lazygit',
   keys = {
     {
-      '<leader>g',
+      '<leader>gg',
       function()
         require('lazygit').open()
       end,

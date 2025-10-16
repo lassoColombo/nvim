@@ -107,8 +107,8 @@ M.setup = function(opts)
     end,
   })
 
-  vim.keymap.set('n', '<leader>qq', '<cmd>copen<cr>', { desc = '[Q]open' })
-  vim.keymap.set('n', '<leader>ql', '<cmd>lopen<cr>', { desc = '[L]open' })
+  vim.keymap.set('n', '<leader>q', '<cmd>copen<cr>', { desc = '[Q]open' })
+  vim.keymap.set('n', '<leader>l', '<cmd>lopen<cr>', { desc = '[L]open' })
 end
 
 return M

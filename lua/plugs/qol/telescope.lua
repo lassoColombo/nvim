@@ -82,14 +82,18 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '\\W', builtin.grep_string, { desc = '\\S]earch current [W]ord (workspace)' })
     vim.keymap.set('n', '\\g', builtin.current_buffer_fuzzy_find, { desc = '\\S]earch [G]rep (buffer)' })
     vim.keymap.set('n', '\\G', builtin.live_grep, { desc = '\\S]earch [G]rep (workspace)' })
-    -- file/buffer searches
+    -- file searches
     vim.keymap.set('n', '\\f', builtin.find_files, { desc = '\\S]earch [F]iles' })
-    vim.keymap.set('n', '\\\\', builtin.current_buffer_fuzzy_find, { desc = '[S]earch fuzzy buffer' })
     vim.keymap.set('n', '<C-f>', builtin.find_files, { desc = '\\S]earch [F]iles' })
-    vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = '\\S]earch [B]uffers' })
     vim.keymap.set('n', '\\F', function()
       builtin.find_files { hidden = true, no_ignore = true }
     end, { desc = '\\S]earch [F]iles (hidden)' })
+    vim.keymap.set('n', '<C-s>', function()
+      builtin.find_files { hidden = true, no_ignore = true }
+    end, { desc = '\\S]earch [F]iles (hidden)' })
+    -- buffer searches
+    vim.keymap.set('n', '\\\\', builtin.current_buffer_fuzzy_find, { desc = '[S]earch fuzzy buffer' })
+    vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = '\\S]earch [B]uffers' })
     vim.keymap.set('n', '\\b', function()
       builtin.buffers()
     end, { desc = '\\S]earch [B]uffers' })

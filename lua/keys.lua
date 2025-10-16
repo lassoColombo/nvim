@@ -1,19 +1,13 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = '[]Clear' })
 
 -- Buffer
-vim.keymap.set({ 'n' }, '<leader><leader>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
-vim.keymap.set({ 'n' }, '<leader><leader>W', '<cmd>wa<cr><esc>', { desc = '[W]rite all buffers' })
-vim.keymap.set('n', '<leader><leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit' })
-
--- NOTE: does not work in terminal emulators
--- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set({ 'n' }, '<leader>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
 
 -- Window
 vim.keymap.set('n', '<C-right>', '<cmd>vertical resize +5<CR>', { desc = '[]Resize right' })
 vim.keymap.set('n', '<C-left>', '<cmd>vertical resize -5<CR>', { desc = '[]Resize left' })
 vim.keymap.set('n', '<C-up>', '<cmd>horizontal resize +3<CR>', { desc = '[]Resize up' })
 vim.keymap.set('n', '<C-down>', '<cmd>horizontal resize -3<CR>', { desc = '[]Resize down' })
--- buffer
 
 -- copy paste from sys clip
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"+p', { desc = '[P]aste from system clipboard' })
@@ -57,6 +51,7 @@ vim.keymap.set('n', '<leader><leader><leader>d', function()
   vim.notify('set diagnostics to ' .. tostring(is_enabled), log_level)
 end, { desc = '[T]oggle [D]iagnostics' })
 
+-- ts get node type
 local function get_node_type()
   local ts_utils = require 'nvim-treesitter.ts_utils'
   local node = ts_utils.get_node_at_cursor()
@@ -64,7 +59,6 @@ local function get_node_type()
     return '*'
   end
   return node:type()
-  -- vim.notify(node:type())
 end
 
 vim.keymap.set('n', '<leader><leader>nt', function()

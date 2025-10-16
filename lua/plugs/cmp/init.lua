@@ -20,12 +20,11 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
   },
   config = function()
-    -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
 
     luasnip.config.setup {}
-    -- `:` cmp-cmdline setup.
+
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -45,12 +44,12 @@ return {
 
         ['<C-Space>'] = cmp.mapping.complete {},
 
-        ['<C-l>'] = cmp.mapping(function()
+        ['<C-e>'] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function()
+        ['<C-i>'] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end
@@ -67,15 +66,12 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'luasnip' }, -- Snippets first
-        { name = 'nvim_lsp' }, -- LSP second
-        { name = 'nvim_lsp_signature_help' }, -- (optional, keep near LSP)
-        { name = 'buffer' }, -- Text last
-        { name = 'path' }, -- Text/file path last
-        {
-          name = 'lazydev',
-          group_index = 0,
-        },
+        { name = 'luasnip' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'path' },
+        { name = 'lazydev', group_index = 0 },
       },
     }
 

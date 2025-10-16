@@ -6,10 +6,10 @@ return {
   mappings = {
     add = 'ga', -- Add surrounding in Normal and Visual modes
     delete = 'gd', -- Delete surrounding
+    replace = 'gr', -- Replace surrounding
     -- find = '<tab>f', -- Find surrounding (to the right)
     -- find_left = '<tab>F', -- Find surrounding (to the left)
     -- highlight = '<tab>h', -- Highlight surrounding
-    replace = 'gr', -- Replace surrounding
     -- update_n_lines = '<tab>n', -- Update `n_lines`
 
     suffix_last = 'l', -- Suffix to search with "prev" method

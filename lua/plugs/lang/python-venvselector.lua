@@ -28,7 +28,7 @@ return {
   ft = 'python', -- Load when opening Python files
   keys = {
     {
-      '<leader>V',
+      '<leader><leader>v',
       '<cmd>VenvSelect<cr>',
       mode = 'n',
       ft = { 'python' },

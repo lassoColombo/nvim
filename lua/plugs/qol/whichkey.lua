@@ -15,10 +15,13 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     spec = {
-      -- { '<tab>', group = '[]Surrount' },
-      -- { '<bs>', group = '[]LSP' },
-      -- { '<bs>n', group = 're[N]ame' },
-      -- { '<leader>s', group = '[S]ession' },
+      { '<leader>', group = '[]LSP and more' },
+      { '<leader>g', group = '[G]it' },
+      { '<leader><leader>n', group = 'Ts-[N]ode' },
+      { '<leader><leader>s', group = '[S]essions' },
+      { '<leader><leader><leader>', group = '[]toggle' },
+      { '<leader><leader>i', group = 'A[I]' },
+      { '<bs>s', group = '[D]ebugger' },
       -- { '<leader>a', group = '[A]I' },
       -- { '<leader>u', group = '[T]oggle' },
       -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
