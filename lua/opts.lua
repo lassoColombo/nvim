@@ -1,4 +1,5 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+--
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -15,7 +16,10 @@ vim.o.breakindent = true
 
 vim.o.undofile = true
 
+vim.o.autoread = true
+
 vim.o.ignorecase = true
+
 vim.o.smartcase = true
 
 vim.o.signcolumn = 'yes'
