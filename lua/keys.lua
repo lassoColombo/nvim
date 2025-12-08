@@ -1,7 +1,10 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = '[]Clear' })
 
 -- Buffer
-vim.keymap.set({ 'n' }, '<leader>w', '<cmd>w<cr><esc>', { desc = '[W]rite buffer' })
+vim.keymap.set({ 'n' }, '<leader>w', function()
+  vim.notify('written ' .. vim.api.nvim_buf_get_name(0))
+  vim.cmd 'w'
+end, { desc = '[W]rite buffer' })
 
 -- Window
 vim.keymap.set('n', '<C-right>', '<cmd>vertical resize +5<CR>', { desc = '[]Resize right' })
