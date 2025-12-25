@@ -1,6 +1,7 @@
 return {
   'nanotee/sqls.nvim',
   ft = { 'sql' },
+  event = { 'BufEnter' },
   keys = {
     {
       '<leader><leader>x',
