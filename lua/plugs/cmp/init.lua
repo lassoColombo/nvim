@@ -66,12 +66,15 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'luasnip' },
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'path' },
-        { name = 'lazydev', group_index = 0 },
+        { name = 'nvim_lsp', priority = 1000 },
+        { name = 'luasnip', priority = 900 },
+        { name = 'nvim_lsp_signature_help', priority = 850 },
+        { name = 'path', priority = 700 },
+        { name = 'buffer', priority = 300 },
+        { name = 'lazydev', priority = 1100, group_index = 0 },
+        per_filetype = {
+          codecompanion = { 'codecompanion' },
+        },
       },
     }
 
