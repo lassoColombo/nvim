@@ -10,7 +10,6 @@ return {
     require('mini.pairs').setup(require 'plugs.mini.pairs')
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')
     require('mini.extra').setup()
-    require('mini.jump2d').setup()
     require('mini.icons').setup()
 
     require 'plugs.mini.statusline'

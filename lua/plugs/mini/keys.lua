@@ -74,14 +74,6 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
--- jump2d
-vim.keymap.set('n', 'f', function()
-  MiniJump2d.start(MiniJump2d.builtin_opts.single_character)
-end, { desc = '[J]ump char' })
-vim.keymap.set('n', 'F', function()
-  MiniJump2d.start(MiniJump2d.builtin_opts.line_start)
-end, { desc = '[J]ump line' })
-
 -- indentscope
 vim.keymap.set('n', '<leader><leader><leader>S', function()
   local state = vim.b.miniindentscope_disable or false
