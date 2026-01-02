@@ -16,14 +16,10 @@ return {
         require('plugs.lsp.aucmds').set(event.buf, client)
       end,
     })
+
     require 'plugs.lsp.opts'
 
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    --  By default, Neovim doesn't support everything that is in the LSP specification.
-    --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-    --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     local servers = {
       ansiblels = require 'plugs.lsp.servers.ansiblels',
@@ -35,64 +31,53 @@ return {
       sqls = require 'plugs.lsp.servers.sqls',
       taplo = require 'plugs.lsp.servers.taplo',
       yamlls = require 'plugs.lsp.servers.yamlls',
-      -- denols = {},
       eslint = {},
-      -- tailwindcss = {},
-    }
-    vim.g.markdown_fenced_languages = {
-      'ts=typescript',
     }
 
-    local ensure_installed = vim.tbl_keys(servers or {})
+    vim.g.markdown_fenced_languages = { 'ts=typescript' }
+
+    local ensure_installed = vim.tbl_keys(servers)
     vim.list_extend(ensure_installed, {
-      -- lua
       'lua_ls',
       'stylua',
-      -- python
       'ruff',
       'pyright',
-      -- yaml & co
       'yamlls',
       'prettier',
       'ansible-lint',
-      -- json
       'jsonls',
-      -- bash
       'bashls',
-      -- sql
-      -- 'sqlls',
       'sqlfmt',
-      -- docker
       'dockerls',
       'docker_compose_language_service',
-      -- bash
-      'bashls',
-      -- toml
       'taplo',
-      -- markdown
       'marksman',
-      -- go
       'gopls',
       'goimports',
       'golangci-lint',
-      -- FE
-      -- 'denols',
       'html',
       'eslint',
       'tailwindcss',
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+    require('mason-tool-installer').setup {
+      ensure_installed = ensure_installed,
+    }
 
     require('mason-lspconfig').setup {
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      ensure_installed = {},
       automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
     }
+
+    for server_name, server_opts in pairs(servers) do
+      vim.lsp.config(
+        server_name,
+        vim.tbl_deep_extend('force', {
+          capabilities = capabilities,
+        }, server_opts or {})
+      )
+
+      vim.lsp.enable(server_name)
+    end
   end,
 }
