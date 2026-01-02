@@ -1,74 +1,131 @@
 return {
   'olimorris/codecompanion.nvim',
+  version = '^18.0.0',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  config = true,
   opts = {
-    display = {
-      action_palette = {
-        width = 95,
-        height = 10,
-        prompt = 'Prompt ', -- Prompt used for interactive LLM calls
-        provider = 'telescope', -- default|telescope|mini_pick
-        opts = {
-          show_default_actions = true, -- Show the default actions in the action palette?
-          show_default_prompt_library = true, -- Show the default prompt library in the action palette?
-        },
-      },
-    },
-    strategies = {
-      -- Change the default chat adapter
+    interactions = {
       chat = {
         adapter = 'copilot',
-        slash_commands = {
-          ['file'] = {
-            callback = 'strategies.chat.slash_commands.file',
-            description = 'share a file',
-            opts = {
-              provider = 'telescope',
-              contains_code = true,
-            },
-          },
-          ['buffer'] = {
-            callback = 'strategies.chat.slash_commands.file',
-            description = 'share a buffer',
-            opts = {
-              provider = 'telescope',
-              contains_code = true,
-            },
-          },
-          ['symbols'] = {
-            callback = 'strategies.chat.slash_commands.file',
-            description = 'share LSP symbols',
-            opts = {
-              provider = 'telescope',
-              contains_code = true,
-            },
-          },
+        opts = {
+          completion_provider = 'cmp',
         },
       },
       inline = {
         adapter = 'copilot',
+        opts = {
+          completion_provider = 'cmp',
+        },
       },
-    },
-    opts = {
-      log_level = 'DEBUG',
+      cmd = {
+        adapter = 'copilot',
+        opts = {
+          completion_provider = 'cmp',
+        },
+      },
+      background = {
+        adapter = 'copilot',
+        opts = {
+          completion_provider = 'cmp',
+        },
+      },
     },
   },
   keys = {
     {
-      '<leader><leader>ia',
-      ':CodeCompanion /buffer',
+      '<leader>ia',
+      '<cmd>CodeCompanionActions<cr>',
       mode = { 'n', 'v' },
-      desc = ']AI Inline',
+      desc = ']AI Actions',
     },
     {
-      '<leader><leader>ic',
-      '<cmd>CodeCompanionChat<cr>',
+      '<leader>ic',
+      '<cmd>CodeCompanionChat Toggle<cr>',
       mode = { 'n', 'v' },
       desc = ']AI Chat',
     },
+    {
+      '<leader>iw',
+      '<cmd>CodeCompanionChat Add<cr>',
+      mode = { 'n', 'v' },
+      desc = ']AI Add',
+    },
   },
 }
+
+-- return {
+--   'olimorris/codecompanion.nvim',
+--   dependencies = {
+--     'nvim-lua/plenary.nvim',
+--     'nvim-treesitter/nvim-treesitter',
+--   },
+--   config = true,
+--   opts = {
+--     display = {
+--       action_palette = {
+--         width = 95,
+--         height = 10,
+--         prompt = 'Prompt ', -- Prompt used for interactive LLM calls
+--         provider = 'telescope', -- default|telescope|mini_pick
+--         opts = {
+--           show_default_actions = true, -- Show the default actions in the action palette?
+--           show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+--         },
+--       },
+--     },
+--     strategies = {
+--       -- Change the default chat adapter
+--       chat = {
+--         adapter = 'copilot',
+--         slash_commands = {
+--           ['file'] = {
+--             callback = 'strategies.chat.slash_commands.file',
+--             description = 'share a file',
+--             opts = {
+--               provider = 'telescope',
+--               contains_code = true,
+--             },
+--           },
+--           ['buffer'] = {
+--             callback = 'strategies.chat.slash_commands.file',
+--             description = 'share a buffer',
+--             opts = {
+--               provider = 'telescope',
+--               contains_code = true,
+--             },
+--           },
+--           ['symbols'] = {
+--             callback = 'strategies.chat.slash_commands.file',
+--             description = 'share LSP symbols',
+--             opts = {
+--               provider = 'telescope',
+--               contains_code = true,
+--             },
+--           },
+--         },
+--       },
+--       inline = {
+--         adapter = 'copilot',
+--       },
+--     },
+--     opts = {
+--       log_level = 'DEBUG',
+--     },
+--   },
+--   keys = {
+--     {
+--       '<leader><leader>ia',
+--       ':CodeCompanion /buffer',
+--       mode = { 'n', 'v' },
+--       desc = ']AI Inline',
+--     },
+--     {
+--       '<leader><leader>ic',
+--       '<cmd>CodeCompanionChat<cr>',
+--       mode = { 'n', 'v' },
+--       desc = ']AI Chat',
+--     },
+--   },
+-- }
