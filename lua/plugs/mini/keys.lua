@@ -84,42 +84,36 @@ end, { desc = '[T]oggle indent[S]cope' })
 
 -- sessions
 vim.keymap.set('n', '<leader><leader>ss', function()
-  local cwd = vim.fn.getcwd()
-  local dotted = cwd:gsub('/', '.')
-  require('mini.sessions').read(dotted)
-end, { desc = '[S]ession [R]esume' })
-vim.keymap.set('n', '<leader><leader>sd', function()
-  local session_names = {}
-  for name, _ in pairs(require('mini.sessions').detected) do
-    table.insert(session_names, name)
-  end
-  vim.ui.select(session_names, { prompt = 'Delete session:' }, function(choice)
-    if choice ~= nil then
-      require('mini.sessions').delete(choice)
-      vim.notify('Deleted session: ' .. choice, vim.log.levels.INFO)
-    end
-  end)
-end, { desc = '[S]ession [D]elete' })
-vim.keymap.set('n', '<leader><leader>sl', function()
-  local session_names = {}
-  for name, _ in pairs(require('mini.sessions').detected) do
-    table.insert(session_names, name)
-  end
-  vim.notify(vim.inspect(session_names))
-end, { desc = '[S]ession [L]ist' })
-vim.keymap.set('n', '<leader><leader>si', function()
-  local session_names = {}
-  for name, _ in pairs(require('mini.sessions').detected) do
-    table.insert(session_names, name)
-  end
-  vim.ui.select(session_names, { prompt = 'Inspect session:' }, function(choice)
-    if choice ~= nil then
-      vim.notify(vim.inspect(require('mini.sessions').detected[choice]))
-    end
-  end)
-end, { desc = '[S]ession [I]nspect' })
+  require('mini.sessions').read()
+end, { desc = '[S]ession re[S]ume (local)' })
+
 vim.keymap.set('n', '<leader><leader>sn', function()
-  local cwd = vim.fn.getcwd()
-  local dotted = cwd:gsub('/', '.')
-  require('mini.sessions').write(dotted)
-end, { desc = '[S]ession [N]ew' })
+  require('mini.sessions').write()
+end, { desc = '[S]ession [N]ew / write (local)' })
+
+vim.keymap.set('n', '<leader><leader>sd', function()
+  local path = require('mini.sessions').get_latest()
+  if not path then
+    vim.notify('No local session to delete', vim.log.levels.WARN)
+    return
+  end
+  require('mini.sessions').delete()
+end, { desc = '[S]ession [D]elete (local)' })
+
+vim.keymap.set('n', '<leader><leader>si', function()
+  local path = require('mini.sessions').get_latest()
+  if not path then
+    vim.notify('No active local session', vim.log.levels.WARN)
+    return
+  end
+  vim.notify(path)
+end, { desc = '[S]ession [I]nspect (local)' })
+
+vim.keymap.set('n', '<leader><leader>sl', function()
+  local path = require('mini.sessions').get_latest()
+  if not path then
+    vim.notify('No local session found', vim.log.levels.WARN)
+    return
+  end
+  vim.cmd('edit ' .. vim.fn.fnameescape(path))
+end, { desc = '[S]ession [L]oad file (debug)' })
