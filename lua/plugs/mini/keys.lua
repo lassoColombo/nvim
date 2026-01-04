@@ -8,7 +8,6 @@ end
 
 vim.keymap.set('n', '<leader>e', minifiles_toggle, { desc = '[E]xplorer' })
 
--- Yank in register full path of entry under cursor
 local copypath = function(manipulation)
   local absolute = (MiniFiles.get_fs_entry() or {}).path
   if absolute == nil then
@@ -81,39 +80,3 @@ vim.keymap.set('n', '<leader><leader><leader>S', function()
   local level = state and vim.log.levels.INFO or vim.log.levels.WARN
   vim.notify(('set indentscope to %s'):format(tostring(state)), level)
 end, { desc = '[T]oggle indent[S]cope' })
-
--- sessions
-vim.keymap.set('n', '<leader><leader>ss', function()
-  require('mini.sessions').read()
-end, { desc = '[S]ession re[S]ume (local)' })
-
-vim.keymap.set('n', '<leader><leader>sn', function()
-  require('mini.sessions').write()
-end, { desc = '[S]ession [N]ew / write (local)' })
-
-vim.keymap.set('n', '<leader><leader>sd', function()
-  local path = require('mini.sessions').get_latest()
-  if not path then
-    vim.notify('No local session to delete', vim.log.levels.WARN)
-    return
-  end
-  require('mini.sessions').delete()
-end, { desc = '[S]ession [D]elete (local)' })
-
-vim.keymap.set('n', '<leader><leader>si', function()
-  local path = require('mini.sessions').get_latest()
-  if not path then
-    vim.notify('No active local session', vim.log.levels.WARN)
-    return
-  end
-  vim.notify(path)
-end, { desc = '[S]ession [I]nspect (local)' })
-
-vim.keymap.set('n', '<leader><leader>sl', function()
-  local path = require('mini.sessions').get_latest()
-  if not path then
-    vim.notify('No local session found', vim.log.levels.WARN)
-    return
-  end
-  vim.cmd('edit ' .. vim.fn.fnameescape(path))
-end, { desc = '[S]ession [L]oad file (debug)' })

@@ -44,22 +44,22 @@ return {
 
         ['<C-Space>'] = cmp.mapping.complete {},
 
-        ['<C-e>'] = cmp.mapping(function()
+        ['<C-j>'] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { 'i', 's' }),
-        ['<C-i>'] = cmp.mapping(function()
+        ['<C-k>'] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end
         end, { 'i', 's' }),
-        ['<C-o>'] = cmp.mapping(function()
+        ['<C-h>'] = cmp.mapping(function()
           if luasnip.choice_active() then
             luasnip.change_choice(1)
           end
         end, { 'i', 's' }),
-        ['<C-u>'] = cmp.mapping(function()
+        ['<C-l>'] = cmp.mapping(function()
           if luasnip.choice_active() then
             require 'luasnip.extras.select_choice'()
           end

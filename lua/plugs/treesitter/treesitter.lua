@@ -1,6 +1,7 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPre', 'BufNewFile' },
+  lazy = false,
+  ref = 'main',
   build = ':TSUpdate',
 
   keys = {
@@ -13,7 +14,6 @@ return { -- Highlight, edit, and navigate code
   },
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
       ensure_installed = require 'plugs.treesitter.ensure-installed',
@@ -28,7 +28,7 @@ return { -- Highlight, edit, and navigate code
       incremental_selection = {
         enable = false,
         keymaps = {
-          init_selection = '<space>V', -- set to `false` to disable one of the mappings
+          init_selection = '<space>V',
           node_incremental = '<C-N>',
           scope_incremental = '<C-o>',
           node_decremental = '<C-P>',

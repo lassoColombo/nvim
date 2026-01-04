@@ -1,7 +1,7 @@
 return {
   dir = vim.fn.stdpath 'config' .. '/lua/bqf/',
-  name = 'bqf',
+  name = 'better-qf',
   config = function()
-    require('bqf').setup()
+    require('better-qf').setup()
   end,
 }

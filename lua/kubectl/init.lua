@@ -35,7 +35,7 @@ end
 
 local M = {}
 
-M.apply = function()
+local function _do(method)
   local mode = vim.fn.mode()
 
   local exit_code = 1
@@ -45,10 +45,10 @@ M.apply = function()
     local lines = get_visual_selection_text()
     local manifest = table.concat(lines, '\n')
 
-    result = vim.fn.systemlist({ 'kubectl', 'apply', '-f', '-' }, manifest)
+    result = vim.fn.systemlist({ 'kubectl', method, '-f', '-' }, manifest)
     exit_code = vim.v.shell_error
   else
-    result = vim.fn.systemlist { 'kubectl', 'apply', '-f', vim.fn.expand '%' }
+    result = vim.fn.systemlist { 'kubectl', method, '-f', vim.fn.expand '%' }
     exit_code = vim.v.shell_error
   end
 
@@ -58,6 +58,18 @@ M.apply = function()
   else
     vim.notify(table.concat(result, '\n'), vim.log.levels.ERROR, { title = title })
   end
+end
+
+M.apply = function()
+  _do 'apply'
+end
+
+M.replace = function()
+  _do 'replace'
+end
+
+M.delete = function()
+  _do 'delete'
 end
 
 return M
