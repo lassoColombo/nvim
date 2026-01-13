@@ -65,3 +65,8 @@ vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''
 vim.o.fillchars = 'foldclose:,foldopen:'
 vim.o.foldlevelstart = 99
+
+vim.opt.sh = 'nu'
+vim.opt.shellcmdflag = '-c'
+vim.opt.shellquote = ''
+vim.opt.shellxquote = ''
