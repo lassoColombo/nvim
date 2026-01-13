@@ -9,8 +9,8 @@ return {
     auto_resize_height = true,
 
     preview = {
-      win_height = 12,
-      win_vheight = 12,
+      win_height = 30,
+      win_vheight = 30,
       delay_syntax = 80,
       border = 'rounded',
       show_title = true,

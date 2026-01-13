@@ -1,7 +1,7 @@
 return {
   dir = vim.fn.stdpath 'config' .. '/lua/sessions',
   name = 'sessions',
-  lazy = false, -- ensure always loaded
+  lazy = false,
   config = function()
     require('sessions').setup()
   end,

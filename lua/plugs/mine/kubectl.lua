@@ -1,18 +1,20 @@
 return {
   dir = vim.fn.stdpath 'config' .. '/lua/kubectl/',
+  ft = 'yaml',
   name = 'kubectl',
   event = 'VimEnter',
+  config = function() end,
   keys = {
     {
       '<leader><leader>kr',
-      require('kubectl').apply,
+      require('kubectl').replace,
       mode = { 'n', 'v' },
       desc = '[K]ubectl [R]eplace',
       ft = 'yaml',
     },
     {
       '<leader><leader>kd',
-      require('kubectl').apply,
+      require('kubectl').delete,
       mode = { 'n', 'v' },
       desc = '[K]ubectl [D]elete',
       ft = 'yaml',
