@@ -26,29 +26,29 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader><leader><leader>D', dapui.toggle, { desc = '[T]oggle [D]AP UI' })
-    vim.keymap.set('n', '<bs>c', dap.continue, { desc = 'DAP Continue/start' })
-    vim.keymap.set('n', '<bs>i', dap.step_into, { desc = 'DAP step Into' })
-    vim.keymap.set('n', '<bs>o', dap.step_over, { desc = 'DAP step Over' })
-    vim.keymap.set('n', '<bs>O', dap.step_out, { desc = 'DAP step Out' })
-    vim.keymap.set('n', '<bs>b', dap.toggle_breakpoint, { desc = 'DAP Breakpoint' })
-
-    vim.keymap.set('n', '<bs>B', function()
+    -- F-keys for DAP controls
+    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'DAP Continue/start' })
+    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'DAP step Over' })
+    vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'DAP step Into' })
+    vim.keymap.set('n', '<F12>', dap.step_out, { desc = 'DAP step Out' })
+    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'DAP Breakpoint' })
+    vim.keymap.set('n', '<F8>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'DAP conditional Breakpoint' })
-    vim.keymap.set('n', '<bs>e', function()
+    vim.keymap.set('n', '<F7>', function()
       dapui.eval(nil, { enter = true })
     end, { desc = 'DAP Eval' })
-    vim.keymap.set('n', '<bs>x', function()
+    vim.keymap.set('n', '<F6>', function()
       dap.disconnect { terminateDebuggee = true }
       dap.close()
       dapui.close()
       vim.notify('[]quit debug session', vim.log.levels.WARN)
     end, { desc = 'debugger [Q]uit' })
-    vim.keymap.set('n', '<bs>C', function()
+    vim.keymap.set('n', '<F4>', function()
       dap.clear_breakpoints()
       vim.notify('[]clearing dap breakpoints', vim.log.levels.INFO)
     end, { desc = 'debugger [C]lear breakpoints' })
+    vim.keymap.set('n', '<F3>', dapui.toggle, { desc = '[T]oggle [D]AP UI' })
 
     dapui.setup {
 
