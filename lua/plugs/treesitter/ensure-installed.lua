@@ -17,7 +17,6 @@ return {
   'toml',
   'json',
   'json5',
-  'jsonc',
   'yaml',
   'sql',
   'dockerfile',

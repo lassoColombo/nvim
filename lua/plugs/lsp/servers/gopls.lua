@@ -1,10 +1,11 @@
-return {
-  settings = {
-    gopls = {
-      buildFlags = { '-tags=quality' },
-      env = {
-        GOOS = 'darwin',
-      },
-    },
-  },
-}
+-- return {
+--   settings = {
+--     gopls = {
+--       -- buildFlags = { '-tags=quality' },
+--       env = {
+--         GOOS = 'darwin',
+--       },
+--     },
+--   },
+-- }
+return {}

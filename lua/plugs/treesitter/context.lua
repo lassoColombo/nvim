@@ -1,7 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter-context',
   event = 'BufEnter',
-  keys = {
+  config = function(_, opts)
+    require('treesitter-context').setup(opts)
     vim.keymap.set('n', '<leader><leader><leader>c', function()
       local context = require 'treesitter-context'
       if context.enabled() then
@@ -10,8 +11,8 @@ return {
         context.enable()
       end
       vim.notify('set treesitter context to ' .. tostring(context.enabled()), vim.log.levels.INFO)
-    end, { desc = '[T]oggle [C]ontext' }),
-  },
+    end, { desc = '[T]oggle [C]ontext' })
+  end,
   opts = {
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

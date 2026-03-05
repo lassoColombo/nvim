@@ -1,7 +1,7 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   lazy = false,
-  ref = 'main',
   build = ':TSUpdate',
 
   keys = {
@@ -13,27 +13,14 @@ return { -- Highlight, edit, and navigate code
     },
   },
   config = function()
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup {
-      ensure_installed = require 'plugs.treesitter.ensure-installed',
-      -- Autoinstall languages that are not installed
-      auto_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
-      autotag = {
-        enable = true,
-        filetypes = { 'html', 'xml', 'tsx', 'typescript', 'typescriptreact' },
-      },
-      incremental_selection = {
-        enable = false,
-        keymaps = {
-          init_selection = '<space>V',
-          node_incremental = '<C-N>',
-          scope_incremental = '<C-o>',
-          node_decremental = '<C-P>',
-        },
-      },
-    }
+    require('nvim-treesitter').install(require 'plugs.treesitter.ensure-installed')
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        local ok = pcall(vim.treesitter.start, args.buf)
+        if ok then
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
   end,
 }

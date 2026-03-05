@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd('User', {
       { key = 'yh', mod = ':h', desc = 'Yank head' },
       { key = 'yt', mod = ':t', desc = 'Yank tail' },
       { key = 'ye', mod = ':e', desc = 'Yank extension' },
-      { key = 'yh', mod = ':~', desc = 'Yank path with ~ for home' },
+      { key = 'y~', mod = ':~', desc = 'Yank path with ~ for home' },
     }
 
     for _, m in ipairs(mappings) do

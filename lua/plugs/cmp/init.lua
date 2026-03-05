@@ -72,9 +72,9 @@ return {
         { name = 'path', priority = 700 },
         { name = 'buffer', priority = 300 },
         { name = 'lazydev', priority = 1100, group_index = 0 },
-        per_filetype = {
-          codecompanion = { 'codecompanion' },
-        },
+      },
+      per_filetype = {
+        codecompanion = { { name = 'codecompanion' } },
       },
     }
 

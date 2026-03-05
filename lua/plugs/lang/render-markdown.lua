@@ -7,4 +7,13 @@ return {
   opts = {
     completions = { lsp = { enabled = true } },
   },
+  keys = {
+    {
+      '<leader><leader><leader>r',
+      '<cmd>RenderMarkdown toggle<cr>',
+      mode = 'n',
+      ft = { 'markdown' },
+      desc = '[T]oggle [R]ender',
+    },
+  },
 }

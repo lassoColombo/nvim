@@ -70,6 +70,7 @@ return {
         json = { 'prettier' },
         javascript = { 'prettier' },
         go = { 'golines', 'goimports', 'gofmt' },
+        rust = { 'rustfmt' },
       },
     }
     -- formatters default configuration

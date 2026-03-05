@@ -2,17 +2,18 @@ local catppuccin = {
   'catppuccin/nvim',
   name = 'catppuccin',
   priority = 1000,
-  init = function()
+  config = function()
+    require('catppuccin').setup {
+      flavour = 'frappe',
+      transparent_background = true,
+      float = {
+        transparent = true,
+        solid = false,
+      },
+    }
+
     vim.cmd.colorscheme 'catppuccin'
   end,
-  opts = {
-    flavour = 'frappe',
-    transparent_background = true,
-    float = {
-      transparent = false,
-      solid = false,
-    },
-  },
 }
 
 local tokyonight = {
@@ -39,7 +40,7 @@ local colorschemes = {
 }
 
 local default = 'catppuccin'
-local wanted = os.getenv 'NVIM_CCOLORSCHEME' or default
+local wanted = os.getenv 'NVIM_COLORSCHEME' or default
 local got = colorschemes[wanted]
 
 if not got then

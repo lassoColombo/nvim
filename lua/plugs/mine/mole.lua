@@ -4,7 +4,7 @@ return {
   keys = {
     {
       '<leader><leader>r',
-      require('mole').run(),
+      function() require('mole').run() end,
       mode = 'n',
       ft = { 'sql' },
       desc = '[R]un [M]ole',

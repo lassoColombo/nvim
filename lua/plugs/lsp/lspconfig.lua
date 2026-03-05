@@ -2,7 +2,6 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     { 'williamboman/mason.nvim', opts = {} },
-    'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'b0o/schemastore.nvim',
@@ -31,42 +30,40 @@ return {
       sqls = require 'plugs.lsp.servers.sqls',
       taplo = require 'plugs.lsp.servers.taplo',
       yamlls = require 'plugs.lsp.servers.yamlls',
+      rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',
       eslint = {},
     }
 
     vim.g.markdown_fenced_languages = { 'ts=typescript' }
 
-    local ensure_installed = vim.tbl_keys(servers)
-    vim.list_extend(ensure_installed, {
-      'lua_ls',
-      'stylua',
-      'ruff',
-      'pyright',
-      'yamlls',
-      'prettier',
-      'ansible-lint',
-      'jsonls',
-      'bashls',
-      'sqlfmt',
-      'dockerls',
-      'docker_compose_language_service',
-      'taplo',
-      'marksman',
-      'gopls',
-      'goimports',
-      'golangci-lint',
-      'html',
-      'eslint',
-      'tailwindcss',
-    })
-
     require('mason-tool-installer').setup {
-      ensure_installed = ensure_installed,
-    }
-
-    require('mason-lspconfig').setup {
-      ensure_installed = {},
-      automatic_installation = false,
+      ensure_installed = {
+        -- language servers
+        'ansible-language-server',
+        'bash-language-server',
+        'dockerfile-language-server',
+        'docker-compose-language-service',
+        'eslint-lsp',
+        'gopls',
+        'html-lsp',
+        'json-lsp',
+        'lua-language-server',
+        'marksman',
+        'pyright',
+        'ruff',
+        'rust-analyzer',
+        'sqls',
+        'tailwindcss-language-server',
+        'taplo',
+        'yaml-language-server',
+        -- formatters / linters / tools
+        'ansible-lint',
+        'goimports',
+        'golangci-lint',
+        'prettier',
+        'sqlfmt',
+        'stylua',
+      },
     }
 
     for server_name, server_opts in pairs(servers) do
