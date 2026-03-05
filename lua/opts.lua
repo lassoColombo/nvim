@@ -67,6 +67,6 @@ vim.o.fillchars = 'foldclose:,foldopen:'
 vim.o.foldlevelstart = 99
 
 vim.opt.sh = 'nu'
-vim.opt.shellcmdflag = '-c'
 vim.opt.shellquote = ''
 vim.opt.shellxquote = ''
+vim.opt.shellcmdflag = '--config ~/.config/nushell/config.nu --env-config ~/.config/nushell/env.nu -c'
