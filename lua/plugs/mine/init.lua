@@ -1,5 +1,6 @@
 return {
   require 'plugs.mine.input',
+  -- require 'plugs.mine.mole',
   require 'plugs.mine.kubectl',
   require 'plugs.mine.headerize',
   require 'plugs.mine.sessions',

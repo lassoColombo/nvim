@@ -66,6 +66,7 @@ return {
         sql = { 'sqlfmt' },
         mysql = { 'sqlfmt' },
         yaml = { 'prettier' },
+        -- nu = { 'nufmt' },
         json = { 'prettier' },
         javascript = { 'prettier' },
         go = { 'golines', 'goimports', 'gofmt' },
