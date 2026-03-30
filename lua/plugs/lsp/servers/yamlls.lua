@@ -70,12 +70,16 @@
 
 return {
   settings = {
+    redhat = { telemetry = { enabled = false } },
     yaml = {
+      validate = true,
+      completion = true,
+      hover = true,
+      format = { enable = true },
+      keyOrdering = false,
       schemaStore = {
-        -- You must disable built-in schemaStore support if you want to use
-        -- this plugin and its advanced options like `ignore`.
+        -- Disable built-in schemaStore support to use schemastore.nvim
         enable = false,
-        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
         url = '',
       },
       schemas = require('schemastore').yaml.schemas(),
