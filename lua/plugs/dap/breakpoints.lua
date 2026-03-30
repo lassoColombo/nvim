@@ -1,7 +1,5 @@
 return {
   'ofirgall/goto-breakpoints.nvim',
-  config = function() end,
-  lazy = false,
   keys = {
     {
       ']b',
