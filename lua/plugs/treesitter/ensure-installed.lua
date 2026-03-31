@@ -22,6 +22,7 @@ return {
   'dockerfile',
   'gitignore',
   'graphql',
+  'rust',
   'javascript',
   'typescript',
   'tsx',
