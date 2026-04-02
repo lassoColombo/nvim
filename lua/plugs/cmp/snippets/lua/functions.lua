@@ -2,63 +2,30 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'func-defer',
-    u.fmt(
-      [[
-      defer func({}) {} {{
-        {}
-      }}({})
-  ]],
-      {
-        u.i(1, ''),
-        u.i(2, ''),
-        u.i(3, ''),
-        u.i(4, ''),
-      }
-    )
-  ),
-  u.s(
-    'func-goroutine',
-    u.fmt(
-      [[
-      go func({}) {} {{
-        {}
-      }}({})
-  ]],
-      {
-        u.i(1, ''),
-        u.i(2, ''),
-        u.i(3, ''),
-        u.i(4, ''),
-      }
-    )
-  ),
-  u.s(
     'func',
     u.fmt(
       [[
-      func {}({}) {} {{
+      local function {}({})
         {}
-      }}
+      end
   ]],
       {
-        u.i(1, 'FuncName'),
+        u.i(1, 'name'),
         u.i(2, ''),
         u.i(3, ''),
-        u.i(4, ''),
       }
     )
   ),
   u.s(
-    'func-anon',
+    'func-global',
     u.fmt(
       [[
-      func({}) {} {{
+      function {}({})
         {}
-      }}
+      end
   ]],
       {
-        u.i(1, ''),
+        u.i(1, 'name'),
         u.i(2, ''),
         u.i(3, ''),
       }
@@ -68,30 +35,58 @@ return {
     'func-method',
     u.fmt(
       [[
-      func ({} *{}) {}({}) {} {{
+      function {}:{}({})
         {}
-      }}
+      end
   ]],
       {
-        u.i(1, 'Receiver'),
-        u.i(2, 'Type'),
-        u.i(3, 'FuncName'),
+        u.i(1, 'Table'),
+        u.i(2, 'method'),
+        u.i(3, ''),
         u.i(4, ''),
-        u.i(5, ''),
-        u.i(6, ''),
       }
     )
   ),
   u.s(
-    'func-main',
+    'func-anon',
     u.fmt(
       [[
-      func main() {{
+      local {} = function({})
         {}
-      }}
+      end
   ]],
       {
-        u.i(1, 'Body'),
+        u.i(1, 'name'),
+        u.i(2, ''),
+        u.i(3, ''),
+      }
+    )
+  ),
+  u.s(
+    'func-closure',
+    u.fmt(
+      [[
+      function({})
+        {}
+      end
+  ]],
+      {
+        u.i(1, ''),
+        u.i(2, ''),
+      }
+    )
+  ),
+  u.s(
+    'func-return',
+    u.fmt(
+      [[
+      return function({})
+        {}
+      end
+  ]],
+      {
+        u.i(1, ''),
+        u.i(2, ''),
       }
     )
   ),

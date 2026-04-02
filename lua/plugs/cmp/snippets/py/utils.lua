@@ -1,13 +1,13 @@
 local u = require 'plugs.cmp.snippets.utils'
 
 return {
-  u.s('pprint', {
+  u.s('log-inspect', {
     u.t "__import__('pprint').pprint(",
     u.i(1, 'expression'),
     u.t ')',
   }),
   u.s(
-    'print-point',
+    'log-debug',
     u.fmt(
       [[
         print("{}")

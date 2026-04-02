@@ -130,7 +130,7 @@ M.setup = function(o)
   end
 
   vim.api.nvim_create_user_command('TsActions', run_action, {})
-  vim.keymap.set('n', '<leader><leader>a', run_action, { desc = 'Ts-[A]ction' })
+  vim.keymap.set('n', '<leader><leader>a', run_action, { desc = 'Ts-Action' })
 end
 
 return M

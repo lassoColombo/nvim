@@ -2,7 +2,7 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'function',
+    'func',
     u.fmt(
       [[
       def {}({}, *args, **kwargs):
@@ -16,7 +16,7 @@ return {
     )
   ),
   u.s(
-    'lambda',
+    'func-lambda',
     u.fmt('lambda {}: {}', {
       u.i(1, 'args'),
       u.i(2, 'expression'),

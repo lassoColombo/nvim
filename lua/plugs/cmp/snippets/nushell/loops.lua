@@ -15,7 +15,6 @@ return {
     )
   ),
 
-  -- while
   u.s(
     'while',
     u.fmt(
@@ -31,7 +30,6 @@ return {
     )
   ),
 
-  -- for
   u.s(
     'for',
     u.fmt(
@@ -48,9 +46,8 @@ return {
     )
   ),
 
-  -- each (common idiom in Nushell)
   u.s(
-    'each',
+    'for-each',
     u.fmt(
       [[
       {} | each {{ |{}|
@@ -64,9 +61,9 @@ return {
       }
     )
   ),
-  -- par-each (parallel each)
+
   u.s(
-    'par-each',
+    'for-each-parallel',
     u.fmt(
       [[
       {} | par-each {{ |{}|

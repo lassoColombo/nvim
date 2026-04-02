@@ -13,7 +13,7 @@ vim.keymap.set('n', '<C-up>', '<cmd>horizontal resize +3<CR>', { desc = '[]Resiz
 vim.keymap.set('n', '<C-down>', '<cmd>horizontal resize -3<CR>', { desc = '[]Resize down' })
 
 -- lists
-vim.keymap.set('n', '<leader>q', '<cmd>copen<CR>', { desc = '[]Open [Q]uickfix' })
+vim.keymap.set('n', '<leader>q', '<cmd>copen<CR>', { desc = '[]Open [Q]uic' })
 
 -- copy paste from sys clip
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"+p', { desc = '[P]aste from system clipboard' })

@@ -1,9 +1,8 @@
 local u = require 'plugs.cmp.snippets.utils'
 
 return {
-  -- def
   u.s(
-    'def',
+    'func',
     u.fmt(
       [[
       def {} [ {} ] {{
@@ -18,9 +17,8 @@ return {
     )
   ),
 
-  -- export def
   u.s(
-    'export-def',
+    'func-export',
     u.fmt(
       [[
       export def {} [ {} ] {{
@@ -35,9 +33,8 @@ return {
     )
   ),
 
-  -- def-env (modifies environment)
   u.s(
-    'def-env',
+    'func-env',
     u.fmt(
       [[
       def-env {} [ {} ] {{
@@ -52,9 +49,8 @@ return {
     )
   ),
 
-  -- export def-env
   u.s(
-    'export-def-env',
+    'func-env-export',
     u.fmt(
       [[
       export def-env {} [ {} ] {{
@@ -69,9 +65,8 @@ return {
     )
   ),
 
-  -- def with signature (returns type)
   u.s(
-    'def-sig',
+    'func-typed',
     u.fmt(
       [[
       def {} [ {} ]: {} -> {} {{

@@ -2,18 +2,18 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'error-make',
+    'error',
     u.fmt(
       [[
         error make {{msg: '{}'}}
       ]],
       {
-        u.i(2, ''),
+        u.i(1, ''),
       }
     )
   ),
   u.s(
-    'print-color',
+    'log-color',
     u.fmt(
       [[
         print ($"({}){}(ansi reset)")

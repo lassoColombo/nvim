@@ -1,5 +1,6 @@
 return {
   dir = vim.fn.stdpath 'config' .. '/lua/kubectl/',
+
   ft = 'yaml',
   name = 'kubectl',
   event = 'VimEnter',

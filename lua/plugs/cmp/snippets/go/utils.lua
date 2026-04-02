@@ -13,7 +13,7 @@ return {
     )
   ),
   u.s(
-    'Getenv',
+    'env-get',
     u.fmt(
       [[
       {} := os.Getenv("{}")
@@ -32,7 +32,7 @@ return {
     )
   ),
   u.s(
-    'print-point',
+    'log-debug',
     u.fmt(
       [[
         fmt.Println("{}")

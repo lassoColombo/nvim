@@ -2,7 +2,7 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'notify',
+    'log',
     u.fmt(
       [[
       vim.notify("{}", vim.log.levels.{})
@@ -19,13 +19,13 @@ return {
     )
   ),
   u.s(
-    'inspect',
+    'log-inspect',
     u.fmt(
       [[
-      vim.notify("vim.inspect({})", vim.log.levels.{})
+      vim.notify(vim.inspect({}), vim.log.levels.{})
       ]],
       {
-        u.i(1, 'Message'),
+        u.i(1, 'Value'),
         u.c(2, {
           u.t 'INFO',
           u.t 'WARN',

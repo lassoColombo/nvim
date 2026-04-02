@@ -5,20 +5,6 @@ return {
     'struct',
     u.fmt(
       [[
-      {} struct {{
-        {}
-      }}
-  ]],
-      {
-        u.i(1, 'Type'),
-        u.i(2, 'Body'),
-      }
-    )
-  ),
-  u.s(
-    'type-struct',
-    u.fmt(
-      [[
       type {} struct {{
         {}
       }}
@@ -109,7 +95,7 @@ return {
     )
   ),
   u.s(
-    'chan-unbuf',
+    'chan',
     u.fmt('{} := make(chan {})', {
       u.i(1, 'ChanName'),
       u.i(2, 'ChanType'),

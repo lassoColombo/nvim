@@ -10,7 +10,7 @@ return {
 
     preview = {
       win_height = 30,
-      win_vheight = 30,
+      win_vheight = 29,
       delay_syntax = 80,
       border = 'rounded',
       show_title = true,

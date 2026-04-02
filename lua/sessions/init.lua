@@ -34,7 +34,6 @@ M.detected = function()
   if vim.fn.filereadable(session_path) == 1 then
     return session_path
   end
-  return nil
 end
 
 M.write = function(opts)

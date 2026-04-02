@@ -100,8 +100,18 @@ return {
     })
 
     local utils = require 'plugs.cmp.snippets.utils'
-    utils.ls.add_snippets('lua', utils.concat(require 'plugs.cmp.snippets.lua.conditionals', require 'plugs.cmp.snippets.lua.nvim'))
-    utils.ls.add_snippets('ansible', require 'plugs.cmp.snippets.ansible.utils')
+    utils.ls.add_snippets(
+      'lua',
+      utils.concat(
+        require 'plugs.cmp.snippets.lua.conditionals',
+        require 'plugs.cmp.snippets.lua.nvim',
+        require 'plugs.cmp.snippets.lua.functions',
+        require 'plugs.cmp.snippets.lua.loops',
+        require 'plugs.cmp.snippets.lua.tables',
+        require 'plugs.cmp.snippets.lua.modules'
+      )
+    )
+    utils.ls.add_snippets('ansible', utils.concat(require 'plugs.cmp.snippets.ansible.utils', require 'plugs.cmp.snippets.ansible.tasks'))
     utils.ls.add_snippets('html', require 'plugs.cmp.snippets.html')
     utils.ls.add_snippets(
       'nu',
@@ -123,7 +133,8 @@ return {
         require 'plugs.cmp.snippets.go.functions',
         require 'plugs.cmp.snippets.go.logging',
         require 'plugs.cmp.snippets.go.loops',
-        require 'plugs.cmp.snippets.go.utils'
+        require 'plugs.cmp.snippets.go.utils',
+        require 'plugs.cmp.snippets.go.testing'
       )
     )
     utils.ls.add_snippets(
@@ -134,7 +145,10 @@ return {
         require 'plugs.cmp.snippets.py.docs',
         require 'plugs.cmp.snippets.py.dunders',
         require 'plugs.cmp.snippets.py.functions',
-        require 'plugs.cmp.snippets.py.utils'
+        require 'plugs.cmp.snippets.py.utils',
+        require 'plugs.cmp.snippets.py.typing',
+        require 'plugs.cmp.snippets.py.asyncio',
+        require 'plugs.cmp.snippets.py.decorators'
       )
     )
     utils.ls.add_snippets(
@@ -143,7 +157,27 @@ return {
         require 'plugs.cmp.snippets.vue.component',
         require 'plugs.cmp.snippets.vue.directives',
         require 'plugs.cmp.snippets.vue.vuex',
-        require 'plugs.cmp.snippets.vue.axios'
+        require 'plugs.cmp.snippets.vue.axios',
+        require 'plugs.cmp.snippets.vue.composition'
+      )
+    )
+    local ts_snips = utils.concat(
+      require 'plugs.cmp.snippets.ts.functions',
+      require 'plugs.cmp.snippets.ts.types',
+      require 'plugs.cmp.snippets.ts.patterns',
+      require 'plugs.cmp.snippets.ts.react'
+    )
+    utils.ls.add_snippets('typescript', ts_snips)
+    utils.ls.add_snippets('javascript', ts_snips)
+    utils.ls.add_snippets('typescriptreact', ts_snips)
+    utils.ls.add_snippets('javascriptreact', ts_snips)
+    utils.ls.add_snippets(
+      'rust',
+      utils.concat(
+        require 'plugs.cmp.snippets.rust.types',
+        require 'plugs.cmp.snippets.rust.functions',
+        require 'plugs.cmp.snippets.rust.errors',
+        require 'plugs.cmp.snippets.rust.patterns'
       )
     )
   end,

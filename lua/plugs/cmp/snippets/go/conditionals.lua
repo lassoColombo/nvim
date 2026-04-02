@@ -117,7 +117,7 @@ return {
     )
   ),
   u.s(
-    'if-ok',
+    'error-check-ok',
     u.fmt(
       [[
       if {} {{

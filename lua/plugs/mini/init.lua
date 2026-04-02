@@ -4,7 +4,6 @@ return {
     require('mini.git').setup()
     require('mini.files').setup(require 'plugs.mini.files')
     require('mini.ai').setup(require 'plugs.mini.around-inside')
-    require('mini.pairs').setup(require 'plugs.mini.pairs')
     require('mini.hipatterns').setup(require 'plugs.mini.hipatterns')
     require('mini.surround').setup(require 'plugs.mini.surround')
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')

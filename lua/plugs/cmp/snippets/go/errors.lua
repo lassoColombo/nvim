@@ -2,7 +2,7 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'if-err',
+    'error-check',
     u.fmt(
       [[
       if err != nil {{
@@ -15,7 +15,7 @@ return {
     )
   ),
   u.s(
-    'if-err-return-err',
+    'error-return',
     u.fmt(
       [[
       if err != nil {{
@@ -26,7 +26,7 @@ return {
     )
   ),
   u.s(
-    'if-err-expression',
+    'error-assign',
     u.fmt(
       [[
       {}, err, := {}
@@ -42,7 +42,7 @@ return {
     )
   ),
   u.s(
-    'return-err',
+    'error-return-val',
     u.fmt(
       [[
       if err != nil {{
@@ -56,7 +56,7 @@ return {
     )
   ),
   u.s(
-    'defer-panic',
+    'error-defer',
     u.fmt(
       [[
       defer func() {{

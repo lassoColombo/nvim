@@ -2,7 +2,7 @@ local u = require 'plugs.cmp.snippets.utils'
 
 return {
   u.s(
-    'for-range-map',
+    'for-map',
     u.fmt(
       [[
       for {}, {} := range {} {{
@@ -18,7 +18,7 @@ return {
     )
   ),
   u.s(
-    'for-range-slice',
+    'for-range',
     u.fmt(
       [[
       for {}, {} := range {} {{
@@ -46,9 +46,8 @@ return {
       }
     )
   ),
-  -- -- :TODO: bring i++/i+= to be a choichenode
   u.s(
-    'fori',
+    'for-i',
     u.fmt(
       [[
      for {} := {}; {} < {}; {}{} {{
