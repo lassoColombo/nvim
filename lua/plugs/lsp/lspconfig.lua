@@ -31,7 +31,12 @@ return {
       taplo = require 'plugs.lsp.servers.taplo',
       yamlls = require 'plugs.lsp.servers.yamlls',
       rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',
+      cssls = {},
+      html = {},
       eslint = {},
+      ts_ls = require 'plugs.lsp.servers.ts_ls',
+      vue_ls = require 'plugs.lsp.servers.vue_ls',
+      emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
     }
 
     vim.g.markdown_fenced_languages = { 'ts=typescript' }
@@ -54,6 +59,10 @@ return {
         'rust-analyzer',
         'sqls',
         'tailwindcss-language-server',
+        'typescript-language-server',
+        'vue-language-server',
+        'css-lsp',
+        'emmet-language-server',
         'taplo',
         'yaml-language-server',
         -- formatters / linters / tools

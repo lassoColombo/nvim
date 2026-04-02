@@ -22,7 +22,6 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader><leader>k', group = '[K]ubectl' },
       { '<leader><leader><leader>', group = '[]toggle' },
       { '<leader><leader>i', group = 'A[I]' },
-      { '<bs>s', group = '[D]ebugger' },
       -- { '<leader>a', group = '[A]I' },
       -- { '<leader>u', group = '[T]oggle' },
       -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },

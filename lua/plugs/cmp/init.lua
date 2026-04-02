@@ -18,6 +18,12 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
+    {
+      'Jezda1337/nvim-html-css',
+      opts = {
+        enable_on = { 'html', 'vue', 'css', 'less', 'scss' },
+      },
+    },
   },
   config = function()
     local cmp = require 'cmp'
@@ -71,6 +77,7 @@ return {
         { name = 'nvim_lsp_signature_help', priority = 850 },
         { name = 'path', priority = 700 },
         { name = 'buffer', priority = 300 },
+        { name = 'html-css', priority = 800 },
         { name = 'lazydev', priority = 1100, group_index = 0 },
       },
       per_filetype = {
@@ -128,6 +135,15 @@ return {
         require 'plugs.cmp.snippets.py.dunders',
         require 'plugs.cmp.snippets.py.functions',
         require 'plugs.cmp.snippets.py.utils'
+      )
+    )
+    utils.ls.add_snippets(
+      'vue',
+      utils.concat(
+        require 'plugs.cmp.snippets.vue.component',
+        require 'plugs.cmp.snippets.vue.directives',
+        require 'plugs.cmp.snippets.vue.vuex',
+        require 'plugs.cmp.snippets.vue.axios'
       )
     )
   end,

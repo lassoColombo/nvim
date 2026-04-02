@@ -11,14 +11,12 @@ return {
   settings = {
     disableOrganizeImports = true,
     python = {
-      ignore = { '*' },
-      -- analysis = {
-      --   autoSearchPaths = true,
-      --   diagnosticMode = 'off',
-      --   typeCheckingMode = 'basic',
-      --   useLibraryCodeForTypes = true,
-      --   diagnosticSeverityOverrides = {},
-      -- },
+      analysis = {
+        typeCheckingMode = 'basic',
+        diagnosticMode = 'workspace',
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      },
     },
   },
 }

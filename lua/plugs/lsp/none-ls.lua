@@ -13,7 +13,6 @@ return {
       --   end,
       -- },
       -- null_ls.builtins.diagnostics.ansiblelint,
-      null_ls.builtins.completion.spell,
       null_ls.builtins.diagnostics.golangci_lint,
       -- null_ls.builtins.diagnostics.djlint,
     }
