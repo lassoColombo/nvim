@@ -13,7 +13,7 @@ return { -- Highlight, edit, and navigate code
     },
   },
   config = function()
-    require('nvim-treesitter').install(require 'plugs.treesitter.ensure-installed')
+    require('nvim-treesitter').install 'all'
     local function attach(buf, ft)
       if vim.treesitter.highlighter.active[buf] then return end
       local lang = vim.treesitter.language.get_lang(ft)
