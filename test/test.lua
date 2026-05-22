@@ -22,8 +22,7 @@
 local a = 1 + 2
 
 local function asd()
-  local ts_utils = require 'nvim-treesitter.ts_utils'
-  local node = ts_utils.get_node_at_cursor()
+  local node = vim.treesitter.get_node()
 
   local query = vim.treesitter.query.parse(
     'lua',

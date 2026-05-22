@@ -46,7 +46,7 @@ M.write = function(opts)
 end
 
 M.list = function()
-  local uv = vim.loop
+  local uv = vim.uv
   local files = {}
   local handle = uv.fs_scandir(sessions_dir)
 

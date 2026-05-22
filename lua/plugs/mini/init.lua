@@ -6,6 +6,7 @@ return {
     require('mini.ai').setup(require 'plugs.mini.around-inside')
     require('mini.hipatterns').setup(require 'plugs.mini.hipatterns')
     require('mini.surround').setup(require 'plugs.mini.surround')
+    require('mini.pairs').setup(require 'plugs.mini.pairs')
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')
     require('mini.extra').setup()
     require('mini.icons').setup()

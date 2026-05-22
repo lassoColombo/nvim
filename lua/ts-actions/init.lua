@@ -86,8 +86,7 @@ M.setup = function(o)
     local ft = vim.bo.filetype
     local bufnr = vim.api.nvim_get_current_buf()
 
-    local ts_utils = require 'nvim-treesitter.ts_utils'
-    local node = ts_utils.get_node_at_cursor()
+    local node = vim.treesitter.get_node()
 
     local node_type = ''
     if node then
