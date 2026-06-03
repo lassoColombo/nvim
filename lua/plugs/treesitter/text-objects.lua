@@ -2,7 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter-textobjects',
   branch = 'main',
   lazy = true,
-  event = 'BufEnter',
+  event = 'VeryLazy',
   config = function()
     require('nvim-treesitter-textobjects').setup {
       select = { lookahead = true, set_jumps = true },

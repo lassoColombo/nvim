@@ -24,6 +24,27 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
     'leoluz/nvim-dap-go',
   },
+  keys = {
+    -- Breakpoints
+    { '<F1>', function() require('dap').toggle_breakpoint() end, desc = 'DAP toggle breakpoint' },
+    { '<F2>', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'DAP conditional breakpoint' },
+    { '<F3>', function() require('dap').clear_breakpoints(); vim.notify('DAP breakpoints cleared', vim.log.levels.INFO) end, desc = 'DAP clear breakpoints' },
+    { '<F4>', function() require('dap').run_to_cursor() end, desc = 'DAP run to cursor' },
+    -- Session
+    { '<F5>', function() require('dap').continue() end, desc = 'DAP continue / start' },
+    { '<F6>', function() require('dap').restart() end, desc = 'DAP restart' },
+    { '<F7>', function() require('dap').disconnect { terminateDebuggee = true }; require('dap').close(); require('dapui').close(); vim.notify('DAP session quit', vim.log.levels.WARN) end, desc = 'DAP quit session' },
+    -- Inspect
+    { '<F8>', function() require('dapui').toggle() end, desc = 'DAP toggle UI' },
+    { '<F9>', function() require('dapui').eval(nil, { enter = true }) end, desc = 'DAP eval' },
+    -- Step
+    { '<F10>', function() require('dap').step_over() end, desc = 'DAP step over' },
+    { '<F11>', function() require('dap').step_into() end, desc = 'DAP step into' },
+    { '<F12>', function() require('dap').step_out() end, desc = 'DAP step out' },
+    -- Go test debugging
+    { '<leader><leader>r', function() require('dap-go').debug_test() end, ft = 'go', desc = 'DAP Go debug test' },
+    { '<leader><leader>t', function() require('dap-go').debug_last_test() end, ft = 'go', desc = 'DAP Go debug last test' },
+  },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
@@ -36,41 +57,6 @@ return {
         'delve',
       },
     }
-
-    -- Breakpoints
-    vim.keymap.set('n', '<F1>', dap.toggle_breakpoint, { desc = 'DAP toggle breakpoint' })
-    vim.keymap.set('n', '<F2>', function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = 'DAP conditional breakpoint' })
-    vim.keymap.set('n', '<F3>', function()
-      dap.clear_breakpoints()
-      vim.notify('DAP breakpoints cleared', vim.log.levels.INFO)
-    end, { desc = 'DAP clear breakpoints' })
-    vim.keymap.set('n', '<F4>', dap.run_to_cursor, { desc = 'DAP run to cursor' })
-
-    -- Session
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'DAP continue / start' })
-    vim.keymap.set('n', '<F6>', dap.restart, { desc = 'DAP restart' })
-    vim.keymap.set('n', '<F7>', function()
-      dap.disconnect { terminateDebuggee = true }
-      dap.close()
-      dapui.close()
-      vim.notify('DAP session quit', vim.log.levels.WARN)
-    end, { desc = 'DAP quit session' })
-
-    -- Inspect
-    vim.keymap.set('n', '<F8>', function()
-      dapui.toggle()
-    end, { desc = 'DAP toggle UI' })
-    vim.keymap.set('n', '<F9>', function()
-      ---@diagnostic disable-next-line: missing-fields
-      dapui.eval(nil, { enter = true })
-    end, { desc = 'DAP eval' })
-
-    -- Step
-    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'DAP step over' })
-    vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'DAP step into' })
-    vim.keymap.set('n', '<F12>', dap.step_out, { desc = 'DAP step out' })
 
     ---@diagnostic disable-next-line: missing-fields
     dapui.setup {
@@ -107,11 +93,19 @@ return {
       },
     }
 
-    -- Go test debugging
-    vim.keymap.set('n', '<leader><leader>r', require('dap-go').debug_test, { desc = 'DAP Go debug test' })
-    vim.keymap.set('n', '<leader><leader>t', require('dap-go').debug_last_test, { desc = 'DAP Go debug last test' })
-
     require('dap-python').setup(require('venv-selector').python())
+
+    table.insert(dap.configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'Django manage.py',
+      program = '${workspaceFolder}/manage.py',
+      args = function()
+        return vim.split(vim.fn.input 'manage.py args: ', ' ')
+      end,
+      django = true,
+      justMyCode = false,
+    })
 
     vim.fn.sign_define('DapBreakpoint', { text = '✋', texthl = '', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointCondition', { text = '🤞', texthl = '', linehl = '', numhl = '' })

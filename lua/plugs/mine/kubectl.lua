@@ -3,7 +3,6 @@ return {
 
   ft = 'yaml',
   name = 'kubectl',
-  event = 'VimEnter',
   config = function() end,
   keys = {
     {
