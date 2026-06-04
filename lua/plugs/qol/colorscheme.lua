@@ -1,3 +1,37 @@
+local starry_cat_frappe = {
+  -- tinty:start
+  -- color slots (catppuccin uses these for syntax highlighting)
+  rosewater = '#fce8d4', -- pale cream-peach (hardcoded) — warmest highlight tier
+  flamingo = '#f0c0b0', -- light coral (hardcoded) — decorative warm
+  pink = '#9cd4fc', -- (swapped) sky-swirl blue — was shebang/Special, now uses former blue
+  mauve = '#f0b094', -- bright moon (peachy pink) — reserved keywords (if/else/for/return/func/etc.)
+  red = '#eca080', -- moon amber — errors, deletions
+  maroon = '#e0a0a0', -- coral (hardcoded) — between red and pink, subtle warnings
+  peach = '#f4c894', -- warm orange (hardcoded) — operators, numbers, booleans
+  yellow = '#f4ecc0', -- star yellow — built-in types, italics
+  green = '#9cd4fc', -- (swapped) sky-swirl blue — strings, diff added now use former pink/blue slot
+  teal = '#a8d4e4', -- swirl cyan — types
+  sky = '#bcd6ec', -- pale sky — operators, info, special punctuation
+  sapphire = '#88b8d8', -- medium blue (hardcoded) — constructors
+  blue = '#f0d4a4', -- (swapped) village-wall amber — functions/Directory now use former strings color
+  lavender = '#c8e0f4', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
+
+  -- text + UI luminance gradient (brightest → darkest)
+  text = '#dee4ee', -- starlight — default foreground
+  subtext1 = '#a4bad0', -- swirl bright — dim text
+  subtext0 = '#94aac0', -- (hardcoded) — slightly dimmer than subtext1
+  overlay2 = '#8aa4c0', -- swirl mid — line numbers, comments
+  overlay1 = '#6c84a0', -- (hardcoded) — UI chrome
+  overlay0 = '#506a88', -- (hardcoded) — darker chrome
+  surface2 = '#3a4f78', -- swirl shadow — selections, borders
+  surface1 = '#2e4068', -- (hardcoded) — between surface2 and surface0
+  surface0 = '#243556', -- lighter sky stratum — input bg
+  base = '#13203a', -- deep cobalt — main background
+  mantle = '#0c1830', -- (hardcoded) — slightly darker than base
+  crust = '#070d1a', -- deepest cobalt — bottommost layer
+  -- tinty:end
+}
+
 local catppuccin = {
   'catppuccin/nvim',
   name = 'catppuccin',
@@ -11,36 +45,7 @@ local catppuccin = {
         solid = false,
       },
       color_overrides = {
-        frappe = {
-          -- Warm accents (each distinct)
-          rosewater = "#e0d0a0",  -- pale gold — warm highlight, star halo
-          flamingo = "#e8c8d0",   -- bright pastel pink — light decorative
-          pink = "#d8b8c0",       -- pastel pink — gentle emphasis
-          mauve = "#c0b6f2",      -- pastel lavender — control flow, rare
-          red = "#d0a0a8",        -- muted rose — errors, deletions
-          maroon = "#c8b0b8",     -- dim pink — subtle warning
-          peach = "#c8b070",      -- warm sand — operators, distant city glow
-          yellow = "#d4c87a",     -- pastel gold — keywords, star glow
-          green = "#a8d8b0",      -- pastel green — strings
-          -- Blues (8 distinct steps through the sky)
-          teal = "#6b8fad",       -- steel blue — types, quieter structural
-          sky = "#9fc8e0",        -- pastel blue — sky near moon, info
-          sapphire = "#4e7a96",   -- slate blue — constructors, cloud shadows
-          blue = "#82b4d4",       -- soft blue — functions, bright sky
-          lavender = "#b0c8e8",   -- soft ice — references, moon reflection
-          text = "#bdd5e8",       -- ice blue — default text, moon glow
-          subtext1 = "#a0b8d0",   -- muted ice — dimmed text
-          subtext0 = "#7a9cb8",   -- mid blue — comments, cloud edges
-          overlay2 = "#6b8fad",   -- steel blue — line numbers
-          overlay1 = "#5a7f9e",   -- mid steel — darker UI chrome
-          overlay0 = "#4e7a96",   -- slate blue — darkest chrome
-          surface2 = "#3d5f7a",   -- dark steel — selections, borders
-          surface1 = "#253548",   -- night blue — subtle UI separators
-          surface0 = "#1b2838",   -- dark navy — input backgrounds
-          base = "#141c2b",       -- deep navy — main background
-          mantle = "#121928",     -- deeper navy — sidebars, below base
-          crust = "#0e1420",      -- darkest navy — bottommost layer
-        },
+        frappe = starry_cat_frappe,
       },
     }
 
