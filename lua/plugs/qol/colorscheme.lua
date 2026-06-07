@@ -23,12 +23,12 @@ local starry_cat_frappe = {
   overlay2 = '#8aa4c0', -- swirl mid — line numbers, comments
   overlay1 = '#6c84a0', -- (hardcoded) — UI chrome
   overlay0 = '#506a88', -- (hardcoded) — darker chrome
-  surface2 = '#3a4f78', -- swirl shadow — selections, borders
+  surface2 = '#304268', -- swirl shadow — selections, borders
   surface1 = '#2e4068', -- (hardcoded) — between surface2 and surface0
-  surface0 = '#243556', -- lighter sky stratum — input bg
-  base = '#13203a', -- deep cobalt — main background
+  surface0 = '#1a2842', -- lighter sky stratum — input bg
+  base = '#0c1730', -- deep cobalt — main background
   mantle = '#0c1830', -- (hardcoded) — slightly darker than base
-  crust = '#070d1a', -- deepest cobalt — bottommost layer
+  crust = '#04080f', -- deepest cobalt — bottommost layer
   -- tinty:end
 }
 
