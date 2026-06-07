@@ -8,12 +8,12 @@ local starry_cat_frappe = {
   red = '#eca080', -- moon amber — errors, deletions
   maroon = '#e0a0a0', -- coral (hardcoded) — between red and pink, subtle warnings
   peach = '#f4c894', -- warm orange (hardcoded) — operators, numbers, booleans
-  yellow = '#f4ecc0', -- star yellow — built-in types, italics
-  green = '#b0d8a0', -- hill sage — strings, diff added (canonical nvm catppuccin green; base09 amber now collides with default fg)
+  yellow = '#f4cc78', -- star yellow — built-in types, italics
+  green = '#b0d8a0', -- hill sage — strings, diff added (canonical catppuccin green)
   teal = '#a8d4e4', -- swirl cyan — types
   sky = '#bcd6ec', -- pale sky — operators, info, special punctuation
   sapphire = '#88b8d8', -- medium blue (hardcoded) — constructors
-  blue = '#9cd4fc', -- sky-swirl blue — functions/Directory (canonical "blue carries the code"; was base09 which now equals default fg)
+  blue = '#9cd4fc', -- sky-swirl blue — functions/Directory ("blue carries the code")
   lavender = '#c8e0f4', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
 
   -- text + UI luminance gradient (brightest → darkest)
