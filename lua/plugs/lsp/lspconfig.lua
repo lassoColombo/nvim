@@ -37,6 +37,7 @@ return {
       ts_ls = require 'plugs.lsp.servers.ts_ls',
       vue_ls = require 'plugs.lsp.servers.vue_ls',
       emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
+      nushell = require 'plugs.lsp.servers.nushell',
     }
 
     vim.g.markdown_fenced_languages = { 'ts=typescript' }
