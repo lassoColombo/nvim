@@ -38,6 +38,7 @@ return {
       vue_ls = require 'plugs.lsp.servers.vue_ls',
       emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
       nushell = require 'plugs.lsp.servers.nushell',
+      jdtls = require 'plugs.lsp.servers.jdtls',
     }
 
     vim.g.markdown_fenced_languages = { 'ts=typescript' }
@@ -52,6 +53,7 @@ return {
         'eslint-lsp',
         'gopls',
         'html-lsp',
+        'jdtls',
         'json-lsp',
         'lua-language-server',
         'marksman',
