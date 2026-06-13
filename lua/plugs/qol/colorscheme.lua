@@ -17,7 +17,7 @@ local starry_cat_frappe = {
   lavender = '#c8e0f4', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
 
   -- text + UI luminance gradient (brightest → darkest)
-  text = '#f0d4a4', -- starlight — default foreground
+  text = '#ecdcc4', -- pinned paler than base05 to match alacritty body fg — softer terminal-wide warm cream
   subtext1 = '#a4bad0', -- swirl bright — dim text
   subtext0 = '#94aac0', -- (hardcoded) — slightly dimmer than subtext1
   overlay2 = '#8aa4c0', -- swirl mid — line numbers, comments
