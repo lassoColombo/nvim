@@ -1,12 +1,11 @@
 return {
-  'hedyhli/markdown-toc.nvim',
+  'richardbizik/nvim-toc',
   ft = 'markdown',
-  cmd = 'Mtoc',
   opts = {},
   keys = {
     {
       '<leader><leader>T',
-      '<cmd>Mtoc<cr>',
+      '<cmd>TOC<cr>',
       mode = 'n',
       desc = 'Generate [T]OC',
     },
