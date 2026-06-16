@@ -27,10 +27,10 @@ return {
       desc = '[S]essions [W]rite',
     },
     {
-      '<leader><leader>sx',
-      require('sessions').delete,
+      '<leader><leader>sm',
+      require('sessions').manage,
       mode = 'n',
-      desc = '[S]essions Delete',
+      desc = '[S]essions [M]anage',
     },
     {
       '<leader><leader>sd',

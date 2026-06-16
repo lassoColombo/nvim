@@ -64,25 +64,64 @@ M.list = function()
   return files
 end
 
-M.delete = function()
+M.manage = function()
   local sessions = M.list()
-  if #sessions == 0 then
-    vim.notify('No sessions detected.', vim.log.levels.INFO)
-    return
-  end
-  vim.ui.select(sessions, { prompt = 'Delete Session' }, function(choice)
-    if not choice then
-      vim.notify('Session deletion cancelled', vim.log.levels.DEBUG)
-      return
-    end
-    local session_path = vim.fs.joinpath(sessions_dir, choice)
-    local ok, err = os.remove(session_path)
-    if ok then
-      vim.notify('Deleted session: ' .. choice, vim.log.levels.INFO)
-    else
-      vim.notify('Failed to delete session: ' .. (err or 'unknown error'), vim.log.levels.ERROR)
-    end
-  end)
+  local buf = vim.api.nvim_create_buf(true, true)
+  vim.api.nvim_buf_set_name(buf, 'sessions://manage')
+  vim.bo[buf].buftype = 'acwrite'
+  vim.bo[buf].bufhidden = 'wipe'
+  vim.bo[buf].swapfile = false
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, sessions)
+  vim.bo[buf].modified = false
+
+  local width = math.min(100, math.floor(vim.o.columns * 0.7))
+  local height = math.min(math.max(#sessions + 2, 8), math.floor(vim.o.lines * 0.7))
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = math.floor((vim.o.lines - height) / 2),
+    col = math.floor((vim.o.columns - width) / 2),
+    style = 'minimal',
+    border = 'rounded',
+    title = ' Sessions ',
+    title_pos = 'center',
+  })
+  vim.wo[win].number = true
+  vim.wo[win].cursorline = true
+
+  vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = buf, nowait = true, silent = true })
+
+  vim.api.nvim_create_autocmd('BufWriteCmd', {
+    buffer = buf,
+    callback = function()
+      local on_disk = {}
+      for _, name in ipairs(M.list()) do
+        on_disk[name] = true
+      end
+      local kept = {}
+      for _, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+        line = vim.trim(line)
+        if line ~= '' then
+          kept[line] = true
+        end
+      end
+      local deleted = 0
+      for name in pairs(on_disk) do
+        if not kept[name] then
+          local ok, err = os.remove(vim.fs.joinpath(sessions_dir, name))
+          if ok then
+            deleted = deleted + 1
+          else
+            vim.notify('Failed to delete ' .. name .. ': ' .. (err or '?'), vim.log.levels.ERROR)
+          end
+        end
+      end
+      vim.api.nvim_buf_set_lines(buf, 0, -1, false, M.list())
+      vim.bo[buf].modified = false
+      vim.notify('deleted ' .. deleted .. ' sessions', vim.log.levels.INFO)
+    end,
+  })
 end
 
 return M
