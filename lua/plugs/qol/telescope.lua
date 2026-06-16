@@ -1,6 +1,9 @@
 return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
-  event = 'VeryLazy',
+  -- Load eagerly: mini.files (use_as_default_explorer) opens during startup when
+  -- launching `nvim <dir>` and snapshots vim.ui.select before VeryLazy fires.
+  -- On close it restores that snapshot, clobbering the telescope-ui-select override.
+  lazy = false,
   branch = 'master',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -15,7 +18,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
-    local actions = require 'telescope.actions'
+    -- local actions = require 'telescope.actions'
     require('telescope').setup {
 
       extensions = {
