@@ -5,7 +5,7 @@ return {
   keys = {
     {
       '<leader><leader>T',
-      '<cmd>TOC<cr>',
+      '<cmd>TOCList<cr>',
       mode = 'n',
       desc = 'Generate [T]OC',
     },
