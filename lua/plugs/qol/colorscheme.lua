@@ -3,32 +3,32 @@ local starry_cat_frappe = {
   -- color slots (catppuccin uses these for syntax highlighting)
   rosewater = '#fce8d4', -- pale cream-peach (hardcoded) — warmest highlight tier
   flamingo = '#f0c0b0', -- light coral (hardcoded) — decorative warm
-  pink = '#d8c0ff', -- twilight indigo — shebang/Special, kept distinct from blue/functions
-  mauve = '#f0b094', -- bright moon (peachy pink) — reserved keywords (if/else/for/return/func/etc.)
-  red = '#eca080', -- moon amber — errors, deletions
+  pink = '#d6a0c9', -- twilight indigo — shebang/Special, kept distinct from blue/functions
+  mauve = '#f2839e', -- bright moon (peachy pink) — reserved keywords (if/else/for/return/func/etc.)
+  red = '#eb6f92', -- moon amber — errors, deletions
   maroon = '#e0a0a0', -- coral (hardcoded) — between red and pink, subtle warnings
   peach = '#f4c894', -- warm orange (hardcoded) — operators, numbers, booleans
-  yellow = '#f4cc78', -- star yellow — built-in types, italics
-  green = '#b0d8a0', -- hill sage — strings, diff added (canonical catppuccin green)
-  teal = '#a8d4e4', -- swirl cyan — types
-  sky = '#bcd6ec', -- pale sky — operators, info, special punctuation
+  yellow = '#ebbcba', -- star yellow — built-in types, italics
+  green = '#31748f', -- hill sage — strings, diff added (canonical catppuccin green)
+  teal = '#9ccfd8', -- swirl cyan — types
+  sky = '#7ba9c4', -- pale sky — operators, info, special punctuation
   sapphire = '#88b8d8', -- medium blue (hardcoded) — constructors
-  blue = '#9cd4fc', -- sky-swirl blue — functions/Directory ("blue carries the code")
-  lavender = '#c8e0f4', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
+  blue = '#c4a7e7', -- sky-swirl blue — functions/Directory ("blue carries the code")
+  lavender = '#d8c8f5', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
 
   -- text + UI luminance gradient (brightest → darkest)
   text = '#ecdcc4', -- pinned paler than base05 to match alacritty body fg — softer terminal-wide warm cream
-  subtext1 = '#a4bad0', -- swirl bright — dim text
+  subtext1 = '#908caa', -- swirl bright — dim text
   subtext0 = '#94aac0', -- (hardcoded) — slightly dimmer than subtext1
-  overlay2 = '#8aa4c0', -- swirl mid — line numbers, comments
+  overlay2 = '#6e6a86', -- swirl mid — line numbers, comments
   overlay1 = '#6c84a0', -- (hardcoded) — UI chrome
   overlay0 = '#506a88', -- (hardcoded) — darker chrome
-  surface2 = '#304268', -- swirl shadow — selections, borders
+  surface2 = '#26233a', -- swirl shadow — selections, borders
   surface1 = '#2e4068', -- (hardcoded) — between surface2 and surface0
-  surface0 = '#1a2842', -- lighter sky stratum — input bg
-  base = '#0c1730', -- deep cobalt — main background
+  surface0 = '#1f1d2e', -- lighter sky stratum — input bg
+  base = '#191724', -- deep cobalt — main background
   mantle = '#0c1830', -- (hardcoded) — slightly darker than base
-  crust = '#04080f', -- deepest cobalt — bottommost layer
+  crust = '#15131f', -- deepest cobalt — bottommost layer
   -- tinty:end
 }
 
