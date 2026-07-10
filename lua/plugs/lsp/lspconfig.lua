@@ -39,6 +39,7 @@ return {
       emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
       nushell = require 'plugs.lsp.servers.nushell',
       jdtls = require 'plugs.lsp.servers.jdtls',
+      terraformls = require 'plugs.lsp.servers.terraformls',
     }
 
     vim.g.markdown_fenced_languages = { 'ts=typescript' }
@@ -67,6 +68,7 @@ return {
         'css-lsp',
         'emmet-language-server',
         'taplo',
+        'terraform-ls',
         'yaml-language-server',
         -- formatters / linters / tools
         'ansible-lint',
@@ -78,14 +80,12 @@ return {
       },
     }
 
-    for server_name, server_opts in pairs(servers) do
-      vim.lsp.config(
-        server_name,
-        vim.tbl_deep_extend('force', {
-          capabilities = capabilities,
-        }, server_opts or {})
-      )
+    vim.lsp.config('*', { capabilities = capabilities })
 
+    for server_name, server_opts in pairs(servers) do
+      if next(server_opts) then
+        vim.lsp.config(server_name, server_opts)
+      end
       vim.lsp.enable(server_name)
     end
   end,

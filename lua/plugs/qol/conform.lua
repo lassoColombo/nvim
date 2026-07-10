@@ -79,6 +79,9 @@ return {
         scss = { 'prettier' },
         go = { 'goimports', 'golines' },
         rust = { 'rustfmt' },
+        terraform = { 'terraform_fmt' },
+        ['terraform-vars'] = { 'terraform_fmt' },
+        hcl = { 'terraform_fmt' },
       },
     }
     -- formatters default configuration
