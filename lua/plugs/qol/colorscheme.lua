@@ -1,34 +1,34 @@
-local starry_cat_frappe = {
+local rose_pine_frappe = {
   -- tinty:start
   -- color slots (catppuccin uses these for syntax highlighting)
-  rosewater = '#f8f2f0', -- brightest tier (palette-driven) — warmest highlight tier
-  flamingo = '#f2899f', -- bright accent (palette-driven) — decorative warm
-  pink = '#ebbcba', -- twilight indigo — shebang/Special, kept distinct from blue/functions
-  mauve = '#f2899f', -- bright moon (peachy pink) — reserved keywords (if/else/for/return/func/etc.)
+  rosewater = '#524f67', -- brightest tier (palette-driven) — warmest highlight tier
+  flamingo = '#ffaace', -- bright accent (palette-driven) — decorative warm
+  pink = '#f6c177', -- twilight indigo — shebang/Special, kept distinct from blue/functions
+  mauve = '#ffaace', -- bright moon (peachy pink) — reserved keywords (if/else/for/return/func/etc.)
   red = '#eb6f92', -- moon amber — errors, deletions
   maroon = '#eb6f92', -- error/warn family (palette-driven) — subtle warnings
-  peach = '#ea9a97', -- secondary warm data (palette-driven) — operators, numbers, booleans
-  yellow = '#f6c177', -- star yellow — built-in types, italics
-  green = '#4d9bb5', -- hill sage — strings, diff added (canonical catppuccin green)
+  peach = '#f6c177', -- secondary warm data (palette-driven) — operators, numbers, booleans
+  yellow = '#ebbcba', -- star yellow — built-in types, italics
+  green = '#31748f', -- hill sage — strings, diff added (canonical catppuccin green)
   teal = '#9ccfd8', -- swirl cyan — types
-  sky = '#a9b6e6', -- pale sky — operators, info, special punctuation
+  sky = '#524f67', -- pale sky — operators, info, special punctuation
   sapphire = '#88b8d8', -- medium blue (hardcoded) — constructors
   blue = '#c4a7e7', -- sky-swirl blue — functions/Directory ("blue carries the code")
-  lavender = '#d0bcec', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
+  lavender = '#ffecff', -- (swapped) brighter pale sky — variables, identifiers, @property, @variable.member
 
   -- text + UI luminance gradient (brightest → darkest)
-  text = '#e6dad7', -- palette body fg
-  subtext1 = '#908caa', -- swirl bright — dim text
+  text = '#e0def4', -- palette body fg
+  subtext1 = '#8c88a6', -- swirl bright — dim text
   subtext0 = '#94aac0', -- (hardcoded) — slightly dimmer than subtext1
   overlay2 = '#6e6a86', -- swirl mid — line numbers, comments
   overlay1 = '#6c84a0', -- (hardcoded) — UI chrome
   overlay0 = '#506a88', -- (hardcoded) — darker chrome
-  surface2 = '#403d52', -- swirl shadow — selections, borders
+  surface2 = '#26233a', -- swirl shadow — selections, borders
   surface1 = '#2e4068', -- (hardcoded) — between surface2 and surface0
   surface0 = '#1f1d2e', -- lighter sky stratum — input bg
   base = '#191724', -- deep cobalt — main background
   mantle = '#0c1830', -- (hardcoded) — slightly darker than base
-  crust = '#100e1a', -- deepest cobalt — bottommost layer
+  crust = '#020109', -- deepest cobalt — bottommost layer
   -- tinty:end
 }
 
@@ -45,7 +45,7 @@ local catppuccin = {
         solid = false,
       },
       color_overrides = {
-        frappe = starry_cat_frappe,
+        frappe = rose_pine_frappe,
       },
     }
 
