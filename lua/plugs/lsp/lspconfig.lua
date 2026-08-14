@@ -60,7 +60,8 @@ return {
         'marksman',
         'pyright',
         'ruff',
-        'rust-analyzer',
+        -- rust-analyzer intentionally NOT via Mason: it must match the project
+        -- toolchain, so it comes from the asdf-managed rust install (shim on PATH).
         'sqls',
         'tailwindcss-language-server',
         'typescript-language-server',
