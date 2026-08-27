@@ -80,3 +80,9 @@ vim.keymap.set('n', '<leader><leader><leader>S', function()
   local level = state and vim.log.levels.INFO or vim.log.levels.WARN
   vim.notify(('set indentscope to %s'):format(tostring(state)), level)
 end, { desc = '[T]oggle indent[S]cope' })
+
+-- minidiff
+
+vim.keymap.set('n', '<leader>gi', function()
+  MiniDiff.toggle_overlay(0)
+end, { desc = 'git [i]nline diff overlay' })

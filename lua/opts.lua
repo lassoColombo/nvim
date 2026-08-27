@@ -83,6 +83,12 @@ vim.o.foldtext = ''
 vim.o.fillchars = 'foldclose:,foldopen:'
 vim.o.foldlevelstart = 99
 
+-- diff mode: nvim 0.12 ships linematch:40 by default; bump it and use the
+-- same algorithm mini.diff defaults to for better hunk alignment
+vim.opt.diffopt:remove 'linematch:40'
+vim.opt.diffopt:append 'linematch:60'
+vim.opt.diffopt:append 'algorithm:histogram'
+
 vim.opt.sh = 'nu'
 vim.opt.shellquote = ''
 vim.opt.shellxquote = ''

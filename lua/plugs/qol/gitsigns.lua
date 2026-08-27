@@ -54,6 +54,23 @@ return {
         map('n', '<leader>gb', gitsigns.blame_line, { desc = 'git [b]lame line' })
         map('n', '<leader>gd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
 
+        -- Quickfix
+        map('n', '<leader>gh', function()
+          gitsigns.setqflist 'all'
+        end, { desc = 'git all [h]unks -> quickfix' })
+
+        map('n', '<leader>gf', function()
+          local files = vim.fn.systemlist { 'git', 'diff', '--name-only', 'HEAD' }
+          vim.list_extend(files, vim.fn.systemlist { 'git', 'ls-files', '--others', '--exclude-standard' })
+          if vim.tbl_isempty(files) then
+            return vim.notify 'No changed files'
+          end
+          vim.fn.setqflist(vim.tbl_map(function(f)
+            return { filename = f, lnum = 1 }
+          end, files))
+          vim.cmd.copen()
+        end, { desc = 'git changed [f]iles -> quickfix' })
+
         map('n', '<leader>gD', function()
           gitsigns.diffthis '@'
         end, { desc = 'git [D]iff against last commit' })
