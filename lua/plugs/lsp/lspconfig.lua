@@ -61,7 +61,8 @@ return {
         'pyright',
         'ruff',
         -- rust-analyzer intentionally NOT via Mason: it must match the project
-        -- toolchain, so it comes from the asdf-managed rust install (shim on PATH).
+        -- toolchain. It comes from rustup's `rust-analyzer` component, via the
+        -- ~/.cargo/bin proxy, which resolves per-directory from rust-toolchain.toml.
         'sqls',
         'tailwindcss-language-server',
         'typescript-language-server',
