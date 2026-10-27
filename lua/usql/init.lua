@@ -1,10 +1,11 @@
 -- usql — keep the sqls language server on the connection a query file belongs to.
 --
--- The queries directory ($USQL_QUERIES, the `usql` Nushell module's convention)
--- binds a file to a connection through its top-level folder: anything under
--- `<alias>/` targets the connection `<alias>`. Files elsewhere take the session
--- default (`:Usql <alias>` or $USQL_CONNECTION, which `usql query editor -c`
--- exports) and are otherwise left on whatever the server is using.
+-- The queries directory (`queries` beside usql's config.yaml, the `usql`
+-- Nushell module's convention) binds a file to a connection through its
+-- top-level folder: anything under `<alias>/` targets the connection `<alias>`.
+-- Files elsewhere take the session default (`:Usql <alias>` or
+-- $USQL_CONNECTION, which `usql edit -C` exports) and are otherwise left
+-- on whatever the server is using.
 --
 -- sqls keeps ONE current connection per server process, so this is a sync, not a
 -- per-buffer setting: every time an sqls buffer is entered, the wanted alias is
@@ -40,17 +41,31 @@ local function warn_once(st, key, msg)
   if st.warned[key] then
     return
   end
-  st.warned[key] = true
   notify(msg, vim.log.levels.WARN)
+  st.warned[key] = true
 end
 
+-- `queries` beside usql's config file: $USQL_CONFIG, else usql's own default
+-- under the OS user config dir (Go's os.UserConfigDir).
 ---@return string
 local function queries_root()
-  local root = vim.env.USQL_QUERIES
-  if not root or root == '' then
-    root = vim.fs.joinpath(vim.env.HOME, '.config', 'usql', 'queries')
+  local config = vim.env.USQL_CONFIG
+  if not config or config == '' then
+    local base
+    if vim.fn.has 'mac' == 1 then
+      base = vim.fs.joinpath(vim.env.HOME, 'Library', 'Application Support')
+    elseif vim.fn.has 'win32' == 1 then
+      base = vim.env.APPDATA
+    else
+      base = vim.env.XDG_CONFIG_HOME
+      if not base or base == '' then
+        base = vim.fs.joinpath(vim.env.HOME, '.config')
+      end
+    end
+    config = vim.fs.joinpath(base, 'usql', 'config.yaml')
   end
-  return vim.uv.fs_realpath(root) or vim.fs.normalize(root)
+  local root = vim.fs.joinpath(vim.fs.dirname(vim.fs.normalize(config)), 'queries')
+  return vim.uv.fs_realpath(root) or root
 end
 
 -- The top-level folder of `path` under `root`, or nil when the file is not
