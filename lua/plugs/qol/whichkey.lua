@@ -21,7 +21,6 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader><leader>s', group = '[S]essions' },
       { '<leader><leader>k', group = '[K]ubectl' },
       { '<leader><leader><leader>', group = '[]toggle' },
-      { '<leader><leader>i', group = 'A[I]' },
       -- { '<leader>a', group = '[A]I' },
       -- { '<leader>u', group = '[T]oggle' },
       -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },

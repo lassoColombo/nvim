@@ -20,7 +20,7 @@ Run: `stylua .` to format everything, or `stylua lua/path/to/file.lua` for a sin
 
 ### Entry Point
 
-`init.lua` loads three global config modules (`opts`, `keys`, `aucmds`), bootstraps lazy.nvim, then imports 9 plugin category modules from `lua/plugs/`.
+`init.lua` loads three global config modules (`opts`, `keys`, `aucmds`), bootstraps lazy.nvim, then imports 8 plugin category modules from `lua/plugs/`.
 
 ### Plugin Categories (`lua/plugs/`)
 
@@ -35,8 +35,7 @@ Each category has an `init.lua` that returns a flat list of plugin specs (aggreg
 | `qol/` | Telescope, conform, gitsigns, colorscheme, etc. |
 | `dap/` | Debug adapter (Python via debugpy, Go via delve) |
 | `lang/` | Language-specific extras (markdown, Python venv, SQL) |
-| `ai/` | CodeCompanion with Copilot adapter |
-| `mine/` | Custom modules: sessions, kubectl, headerize, ts-actions, input, usql |
+| `mine/` | Custom modules: sessions, filewatch, kubectl, input, usql |
 
 ### LSP Server Configs
 
@@ -51,9 +50,8 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` organized by lang
 ### Custom Modules (`lua/`)
 
 - `sessions/` — session save/restore
+- `filewatch/` — keeps buffers in sync across multiple Neovim instances
 - `kubectl/` — kubectl CLI integration
-- `ts-actions/` — TreeSitter-driven code actions per filetype
-- `headerize/` — comment header generation
 - `input/` — custom vim.ui.input replacement
 - `usql/` — keeps the sqls LSP on the connection a query file belongs to (top-level folder of `$USQL_QUERIES` = alias; `:Usql <alias>` / `$USQL_CONNECTION` as session default); aliases are read from the server (`showConnections`), switches go through `switchConnections`
 

@@ -82,9 +82,10 @@ return {
     apply = '', -- gitsigns owns staging (<leader>gs)
     reset = '', -- gitsigns owns reset (<leader>gr)
     textobject = 'gh',
-    goto_first = '[H',
-    goto_prev = '[h',
-    goto_next = ']h',
-    goto_last = ']H',
+    -- gitsigns owns hunk navigation (]h / [h)
+    goto_first = '',
+    goto_prev = '',
+    goto_next = '',
+    goto_last = '',
   },
 }

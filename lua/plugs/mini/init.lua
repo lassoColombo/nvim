@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.nvim',
+  'nvim-mini/mini.nvim',
   config = function()
     require('mini.git').setup()
     require('mini.diff').setup(require 'plugs.mini.diff')
@@ -9,7 +9,6 @@ return {
     require('mini.surround').setup(require 'plugs.mini.surround')
     require('mini.pairs').setup(require 'plugs.mini.pairs')
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')
-    require('mini.extra').setup()
     require('mini.icons').setup()
 
     require 'plugs.mini.statusline'

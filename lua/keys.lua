@@ -23,8 +23,10 @@ vim.keymap.set({ 'n', 'v' }, '<C-y>', '"+y', { desc = '[Y]ank to system clipboar
 local function toggle(opt, scope, state)
   local scopes = { o = vim.o, wo = vim.wo, bo = vim.bo }
   local target = scopes[scope or 'o']
-  state = state or not target[opt]
-  target[opt] = state or not target[opt]
+  if state == nil then
+    state = not target[opt]
+  end
+  target[opt] = state
   local level = state and vim.log.levels.INFO or vim.log.levels.WARN
   vim.notify(('set %s to %s'):format(opt, tostring(state)), level)
 end
@@ -69,4 +71,3 @@ end
 vim.keymap.set('n', '<leader><leader>nt', function()
   vim.notify(get_node_type())
 end, { desc = '[N]ode [T]ype' })
-local a = { 'a', 'y' }

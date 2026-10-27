@@ -80,9 +80,6 @@ return {
         { name = 'html-css', priority = 800 },
         { name = 'lazydev', priority = 1100, group_index = 0 },
       },
-      per_filetype = {
-        codecompanion = { { name = 'codecompanion' } },
-      },
     }
 
     cmp.setup.cmdline(':', {

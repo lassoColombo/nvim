@@ -21,7 +21,6 @@ require('lazy').setup({
   require 'plugs.lang',
   require 'plugs.qol',
   require 'plugs.dap',
-  require 'plugs.ai',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.

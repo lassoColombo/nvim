@@ -48,23 +48,18 @@ return {
       ensure_installed = {
         -- language servers
         'ansible-language-server',
-        'bash-language-server',
-        'dockerfile-language-server',
-        'docker-compose-language-service',
         'eslint-lsp',
         'gopls',
         'html-lsp',
         'jdtls',
         'json-lsp',
         'lua-language-server',
-        'marksman',
         'pyright',
         'ruff',
         -- rust-analyzer intentionally NOT via Mason: it must match the project
         -- toolchain. It comes from rustup's `rust-analyzer` component, via the
         -- ~/.cargo/bin proxy, which resolves per-directory from rust-toolchain.toml.
         'sqls',
-        'tailwindcss-language-server',
         'typescript-language-server',
         'vue-language-server',
         'css-lsp',
