@@ -91,6 +91,10 @@ return {
     require('conform').formatters.sqlfmt = {
       prepend_args = { '-l', '80' },
     }
+    -- golines defaults to 100 columns and wraps one argument per line: too aggressive for Go.
+    require('conform').formatters.golines = {
+      prepend_args = { '--max-len', '125' },
+    }
     return opts
   end,
 }
