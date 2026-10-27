@@ -36,7 +36,7 @@ Each category has an `init.lua` that returns a flat list of plugin specs (aggreg
 | `dap/` | Debug adapter (Python via debugpy, Go via delve) |
 | `lang/` | Language-specific extras (markdown, Python venv, SQL) |
 | `ai/` | CodeCompanion with Copilot adapter |
-| `mine/` | Custom modules: sessions, kubectl, headerize, ts-actions, input |
+| `mine/` | Custom modules: sessions, kubectl, headerize, ts-actions, input, usql |
 
 ### LSP Server Configs
 
@@ -55,6 +55,7 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` organized by lang
 - `ts-actions/` — TreeSitter-driven code actions per filetype
 - `headerize/` — comment header generation
 - `input/` — custom vim.ui.input replacement
+- `usql/` — keeps the sqls LSP on the connection a query file belongs to (top-level folder of `$USQL_QUERIES` = alias; `:Usql <alias>` / `$USQL_CONNECTION` as session default); aliases are read from the server (`showConnections`), switches go through `switchConnections`
 
 ## Key Conventions
 
