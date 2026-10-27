@@ -1,19 +1,19 @@
 -- sqls, fed from the usql connections instead of its own ~/.config/sqls/config.yml.
 --
--- usql's config.yaml is the single source of connections; `usql config
--- translate-to sqls` renders it in sqls's format. Doing that here, right before
+-- usql's config.yaml is the single source of connections; the `sqls-config`
+-- Nushell monomodule renders it in sqls's format. Doing that here, right before
 -- the server process is spawned, means there is no file to regenerate by hand
 -- and sqls can never be out of step with usql. `-config <file>` is sqls's
 -- highest-precedence source and is read at process start, so the aliases are
 -- complete before the first request (no race with workspace settings).
 --
--- When the translation fails (no nu, no usql module, …) sqls starts bare and
+-- When the rendering fails (no nu, no module, …) sqls starts bare and
 -- falls back to its user config, with one warning.
 
 local CACHE = vim.fs.joinpath(vim.fn.stdpath 'cache', 'usql', 'sqls.yml')
 
 -- The session default (`:Usql`, or $USQL_CONNECTION as exported by `usql query
--- editor`), if any: it goes first in the rendered config, because sqls connects
+-- edit`), if any: it goes first in the rendered config, because sqls connects
 -- to its first entry on startup.
 ---@return string?
 local function default_alias()
@@ -28,7 +28,7 @@ end
 
 ---@return string? path of the rendered config
 local function render_config()
-  local script = 'usql config translate-to sqls'
+  local script = 'use sqls-config; sqls-config'
   local first = default_alias()
   if first then
     script = script .. ' --first ' .. vim.fn.shellescape(first)
