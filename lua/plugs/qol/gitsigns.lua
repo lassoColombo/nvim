@@ -59,13 +59,15 @@ return {
         end, { desc = 'git all [h]unks -> quickfix' })
 
         map('n', '<leader>gf', function()
-          local files = vim.fn.systemlist { 'git', 'diff', '--name-only', 'HEAD' }
-          vim.list_extend(files, vim.fn.systemlist { 'git', 'ls-files', '--others', '--exclude-standard' })
+          -- run both from the repo root, so both print root-relative paths, and anchor them there
+          local root = vim.b[bufnr].gitsigns_status_dict.root
+          local files = vim.fn.systemlist { 'git', '-C', root, 'diff', '--name-only', 'HEAD' }
+          vim.list_extend(files, vim.fn.systemlist { 'git', '-C', root, 'ls-files', '--others', '--exclude-standard' })
           if vim.tbl_isempty(files) then
             return vim.notify 'No changed files'
           end
           vim.fn.setqflist(vim.tbl_map(function(f)
-            return { filename = f, lnum = 1 }
+            return { filename = vim.fs.joinpath(root, f), lnum = 1 }
           end, files))
           vim.cmd.copen()
         end, { desc = 'git changed [f]iles -> quickfix' })

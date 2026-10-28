@@ -26,6 +26,7 @@ vim.o.relativenumber = true
 vim.o.mouse = 'a'
 
 vim.o.showmode = false
+vim.o.laststatus = 3
 
 vim.o.breakindent = true
 

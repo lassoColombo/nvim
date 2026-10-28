@@ -35,7 +35,7 @@ Each category has an `init.lua` that returns a flat list of plugin specs (aggreg
 | `qol/` | Telescope, conform, gitsigns, colorscheme, etc. |
 | `dap/` | Debug adapter (Python via debugpy, Go via delve) |
 | `lang/` | Language-specific extras (markdown, Python venv, SQL) |
-| `mine/` | Custom modules: sessions, filewatch, kubectl, input, usql |
+| `mine/` | Custom modules: sessions, filewatch, kubectl, usql |
 
 ### LSP Server Configs
 
@@ -52,7 +52,6 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` and loaded by Lua
 - `sessions/` — session save/restore
 - `filewatch/` — keeps buffers in sync across multiple Neovim instances
 - `kubectl/` — kubectl CLI integration
-- `input/` — custom vim.ui.input replacement
 - `usql/` — keeps the sqls LSP on the connection a query file belongs to (top-level folder of `$USQL_QUERIES` = alias; `:Usql <alias>` / `$USQL_CONNECTION` as session default); aliases are read from the server (`showConnections`), switches go through `switchConnections`
 
 ## Key Conventions

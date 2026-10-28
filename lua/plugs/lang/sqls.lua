@@ -14,7 +14,10 @@ end
 
 return {
   'nanotee/sqls.nvim',
-  ft = { 'sql' },
+  -- Not lazy: its lsp/sqls.lua adds the on_attach that creates the :Sqls* commands, and
+  -- vim.lsp caches every enabled server's config the first time any buffer gets a
+  -- filetype, so the plugin has to be on the runtimepath before that.
+  lazy = false,
   keys = {
     {
       '<leader><leader>x',

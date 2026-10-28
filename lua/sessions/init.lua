@@ -9,9 +9,13 @@ end
 
 M.setup = function()
   vim.fn.mkdir(sessions_dir, 'p')
+  -- Only keep an active session (resumed or written in this run) up to date, so a
+  -- quick `nvim file`, a commit message or a `kubectl edit` can't replace it.
   vim.api.nvim_create_autocmd('VimLeavePre', {
     callback = function()
-      M.write { silent = true }
+      if vim.v.this_session ~= '' then
+        M.write { silent = true }
+      end
     end,
   })
 end

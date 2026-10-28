@@ -10,8 +10,8 @@ return {
     require('mini.pairs').setup()
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')
     require('mini.icons').setup()
+    require('mini.statusline').setup()
 
-    require 'plugs.mini.statusline'
     require 'plugs.mini.keys'
     require 'plugs.mini.aucmd'
   end,

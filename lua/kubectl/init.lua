@@ -1,75 +1,31 @@
-local function get_visual_selection_text()
-  local _, srow, scol = unpack(vim.fn.getpos 'v')
-  local _, erow, ecol = unpack(vim.fn.getpos '.')
-
-  if vim.fn.mode() == 'V' then
-    if srow > erow then
-      return vim.api.nvim_buf_get_lines(0, erow - 1, srow, true)
-    else
-      return vim.api.nvim_buf_get_lines(0, srow - 1, erow, true)
-    end
-  end
-
-  if vim.fn.mode() == 'v' then
-    if srow < erow or (srow == erow and scol <= ecol) then
-      return vim.api.nvim_buf_get_text(0, srow - 1, scol - 1, erow - 1, ecol, {})
-    else
-      return vim.api.nvim_buf_get_text(0, erow - 1, ecol - 1, srow - 1, scol, {})
-    end
-  end
-
-  if vim.fn.mode() == '\22' then
-    local lines = {}
-    if srow > erow then
-      srow, erow = erow, srow
-    end
-    if scol > ecol then
-      scol, ecol = ecol, scol
-    end
-    for i = srow, erow do
-      table.insert(lines, vim.api.nvim_buf_get_text(0, i - 1, math.min(scol - 1, ecol), i - 1, math.max(scol - 1, ecol), {})[1])
-    end
-    return lines
-  end
-end
-
 local M = {}
 
-local function _do(method)
+-- The visual selection (any visual mode) or, in normal mode, the whole buffer. Either
+-- way it goes to kubectl on stdin, so what is applied is what you see, saved or not.
+local function manifest()
   local mode = vim.fn.mode()
-
-  local exit_code = 1
-  local result = {}
-
-  if mode:match '[vV]' then
-    local lines = get_visual_selection_text()
-    local manifest = table.concat(lines, '\n')
-
-    result = vim.fn.systemlist({ 'kubectl', method, '-f', '-' }, manifest)
-    exit_code = vim.v.shell_error
-  else
-    result = vim.fn.systemlist { 'kubectl', method, '-f', vim.fn.expand '%' }
-    exit_code = vim.v.shell_error
+  if mode == 'v' or mode == 'V' or mode == '\22' then
+    return vim.fn.getregion(vim.fn.getpos 'v', vim.fn.getpos '.', { type = mode })
   end
+  return vim.api.nvim_buf_get_lines(0, 0, -1, false)
+end
 
-  local title = 'kubectl ' .. method
-  if exit_code == 0 then
-    vim.notify(table.concat(result, '\n'), vim.log.levels.INFO, { title = title })
-  else
-    vim.notify(table.concat(result, '\n'), vim.log.levels.ERROR, { title = title })
-  end
+local function run(method)
+  local result = vim.fn.systemlist({ 'kubectl', method, '-f', '-' }, manifest())
+  local level = vim.v.shell_error == 0 and vim.log.levels.INFO or vim.log.levels.ERROR
+  vim.notify(table.concat(result, '\n'), level, { title = 'kubectl ' .. method })
 end
 
 M.apply = function()
-  _do 'apply'
+  run 'apply'
 end
 
 M.replace = function()
-  _do 'replace'
+  run 'replace'
 end
 
 M.delete = function()
-  _do 'delete'
+  run 'delete'
 end
 
 return M

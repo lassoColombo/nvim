@@ -1,18 +1,16 @@
 local show_dotfiles = true
 
-local filter_show = function(fs_entry)
-  return true
+-- The global filter reads the current choice: `MiniFiles.open` rebuilds its options
+-- from `MiniFiles.config`, so the toggle survives closing the explorer.
+local filter = function(fs_entry)
+  return show_dotfiles or not vim.startswith(fs_entry.name, '.')
 end
-
-local filter_hide = function(fs_entry)
-  return not vim.startswith(fs_entry.name, '.')
-end
+MiniFiles.config.content.filter = filter
 
 local toggle_dotfiles = function()
   show_dotfiles = not show_dotfiles
-  local new_filter = show_dotfiles and filter_show or filter_hide
   vim.notify('set show-dotfiles to ' .. tostring(show_dotfiles))
-  MiniFiles.refresh { content = { filter = new_filter } }
+  MiniFiles.refresh { content = { filter = filter } }
 end
 
 vim.api.nvim_create_autocmd('User', {
