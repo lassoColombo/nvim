@@ -45,7 +45,7 @@ The full server list is the `servers` table in `lua/plugs/lsp/lspconfig.lua`.
 
 ### Snippets
 
-LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` and loaded by LuaSnip's Lua loader: `<ft>.lua` or `<ft>/*.lua`, where `<ft>` is the Neovim filetype (`python`, `nu`, `typescript`, ...). Each file returns a list of snippet definitions using helpers from `lua/plugs/cmp/snippet_utils.lua`. javascript/jsx/tsx reuse the typescript snippets via `filetype_extend`.
+LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` and loaded by LuaSnip's Lua loader: `<ft>.lua` or `<ft>/*.lua`, where `<ft>` is the Neovim filetype (`python`, `nu`, `typescript`, ...). Each file returns a list of snippet definitions using helpers from `lua/plugs/cmp/snippet_utils.lua`. Snippets valid in both JS and TS live in `javascript/`, typed ones in `typescript/`; `filetype_extend` in `lua/plugs/cmp/init.lua` gives typescript and both react filetypes the `javascript/` set, and typescriptreact the `typescript/` set too.
 
 ### Custom Modules (`lua/`)
 

@@ -11,9 +11,7 @@ return {
   ]],
       {
         u.i(1, ''),
-        u.f(function(args, parent, user_args)
-          return args[1][1]
-        end, { 1 }),
+        u.rep(1),
       }
     )
   ),

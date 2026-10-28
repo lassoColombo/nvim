@@ -37,7 +37,7 @@ return {
     'func-env',
     u.fmt(
       [[
-      def-env {} [ {} ] {{
+      def --env {} [ {} ] {{
         {}
       }}
       ]],
@@ -53,7 +53,7 @@ return {
     'func-env-export',
     u.fmt(
       [[
-      export def-env {} [ {} ] {{
+      export def --env {} [ {} ] {{
         {}
       }}
       ]],

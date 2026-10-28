@@ -5,12 +5,12 @@ return {
     'func',
     u.fmt(
       [[
-      def {}({}, *args, **kwargs):
+      def {}({}):
           {}
   ]],
       {
         u.i(1, 'funcName'),
-        u.i(2, 'args'),
+        u.i(2, '*args, **kwargs'),
         u.i(3, 'pass'),
       }
     )

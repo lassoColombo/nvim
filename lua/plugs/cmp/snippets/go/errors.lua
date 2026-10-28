@@ -29,7 +29,7 @@ return {
     'error-assign',
     u.fmt(
       [[
-      {}, err, := {}
+      {}, err := {}
       if err != nil {{
         {}
       }}

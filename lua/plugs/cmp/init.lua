@@ -88,10 +88,12 @@ return {
       }),
     })
 
+    -- javascript/ holds the snippets valid in both languages, typescript/ the typed ones.
+    -- filetype_extend is not transitive, and must run before lazy_load resolves the current buffer.
+    luasnip.filetype_extend('typescript', { 'javascript' })
+    luasnip.filetype_extend('javascriptreact', { 'javascript' })
+    luasnip.filetype_extend('typescriptreact', { 'typescript', 'javascript' })
     -- snippets/<ft>.lua and snippets/<ft>/*.lua are loaded on the buffer's filetype
     require('luasnip.loaders.from_lua').lazy_load { paths = { vim.fn.stdpath 'config' .. '/lua/plugs/cmp/snippets' } }
-    for _, ft in ipairs { 'javascript', 'javascriptreact', 'typescriptreact' } do
-      luasnip.filetype_extend(ft, { 'typescript' })
-    end
   end,
 }

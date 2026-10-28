@@ -17,16 +17,14 @@ return {
     u.fmt(
       [[
       {} := os.Getenv("{}")
-	  if {} == "" {{
-      {}
-	  }}
+      if {} == "" {{
+        {}
+      }}
     ]],
       {
         u.i(1, 'Value'),
         u.i(2, 'VarName'),
-        u.f(function(args, parent, user_args)
-          return args[1][1]
-        end, { 1 }),
+        u.rep(1),
         u.i(3, 'IfNotSetBody'),
       }
     )

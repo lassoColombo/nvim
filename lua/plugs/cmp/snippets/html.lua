@@ -255,7 +255,7 @@ return {
     'attr-class-id-style',
     u.fmt(
       '<{} class="{}" id="{}" style="{}">{}</{}>',
-      { u.i(1, 'div'), u.i(2, 'classname'), u.i(3, 'idname'), u.i(4, 'color:red;'), u.i(5, 'Content'), u.i(1, 'div') }
+      { u.i(1, 'div'), u.i(2, 'classname'), u.i(3, 'idname'), u.i(4, 'color:red;'), u.i(5, 'Content'), u.rep(1) }
     )
   ),
 

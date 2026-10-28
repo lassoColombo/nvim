@@ -66,13 +66,6 @@ return {
     )
   ),
   u.s(
-    'func-arrow-inline',
-    u.fmt('({}) => {}', {
-      u.i(1, 'param'),
-      u.i(2, 'expression'),
-    })
-  ),
-  u.s(
     'func-anon',
     u.fmt(
       [[
@@ -88,15 +81,16 @@ return {
     )
   ),
   u.s(
-    'func-iife',
+    'promise',
     u.fmt(
       [[
-      (async () => {{
+      new Promise<{}>((resolve, reject) => {{
         {}
-      }})()
+      }})
   ]],
       {
-        u.i(1, ''),
+        u.i(1, 'Type'),
+        u.i(2, ''),
       }
     )
   ),

@@ -6,8 +6,7 @@ return {
     u.fmt(
       [[
       class {}({}):
-          
-          def __init__(self, *args, **kargs):
+          def __init__(self, *args, **kwargs):
               {}
 
           def __str__(self):

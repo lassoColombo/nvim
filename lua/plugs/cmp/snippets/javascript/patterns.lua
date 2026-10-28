@@ -59,20 +59,6 @@ return {
     )
   ),
   u.s(
-    'promise',
-    u.fmt(
-      [[
-      new Promise<{}>((resolve, reject) => {{
-        {}
-      }})
-  ]],
-      {
-        u.i(1, 'Type'),
-        u.i(2, ''),
-      }
-    )
-  ),
-  u.s(
     'destr-obj',
     u.fmt('const {{ {} }} = {}', {
       u.i(1, 'field'),
@@ -91,7 +77,7 @@ return {
     'destr-default',
     u.fmt('const {{ {} = {} }} = {}', {
       u.i(1, 'field'),
-      u.i(2, 'default'),
+      u.i(2, 'defaultValue'),
       u.i(3, 'object'),
     })
   ),
@@ -118,5 +104,29 @@ return {
     u.fmt('console.debug({})', {
       u.i(1, 'value'),
     })
+  ),
+  u.s(
+    'class',
+    u.fmt(
+      [[
+      class {} {{
+        constructor({}) {{
+          {}
+        }}
+
+        {}({}) {{
+          {}
+        }}
+      }}
+  ]],
+      {
+        u.i(1, 'Name'),
+        u.i(2, ''),
+        u.i(3, ''),
+        u.i(4, 'method'),
+        u.i(5, ''),
+        u.i(6, ''),
+      }
+    )
   ),
 }

@@ -10,8 +10,8 @@ return {
       }}
   ]],
       {
-        u.c(1, { u.i 'key', u.t '_' }),
-        u.c(2, { u.i 'value', u.t '_' }),
+        u.c(1, { u.i(nil, 'key'), u.t '_' }),
+        u.c(2, { u.i(nil, 'value'), u.t '_' }),
         u.i(3, 'Map'),
         u.i(4, ''),
       }
@@ -26,7 +26,7 @@ return {
       }}
   ]],
       {
-        u.c(1, { u.i 'Counter', u.t '_' }),
+        u.c(1, { u.i(nil, 'Counter'), u.t '_' }),
         u.i(2, 'Value'),
         u.i(3, 'Slice'),
         u.i(4, ''),
@@ -37,9 +37,9 @@ return {
     'for',
     u.fmt(
       [[
-     for {{
-      {}
-     }}
+      for {{
+        {}
+      }}
   ]],
       {
         u.i(1, ''),
@@ -50,21 +50,17 @@ return {
     'for-i',
     u.fmt(
       [[
-     for {} := {}; {} < {}; {}{} {{
-      {}
-     }}
+      for {} := {}; {} < {}; {}{} {{
+        {}
+      }}
   ]],
       {
         u.i(1, 'Counter'),
         u.i(2, 'Start'),
-        u.f(function(args, parent, user_args)
-          return args[1][1]
-        end, { 1 }),
+        u.rep(1),
         u.i(3, 'End'),
-        u.f(function(args, parent, user_args)
-          return args[1][1]
-        end, { 1 }),
-        u.i(4, 'Increment'),
+        u.rep(1),
+        u.i(4, '++'),
         u.i(5, ''),
       }
     )

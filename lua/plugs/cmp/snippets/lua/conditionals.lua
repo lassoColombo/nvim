@@ -1,12 +1,5 @@
 local u = require 'plugs.cmp.snippet_utils'
 
 return {
-  u.s('ternary', {
-    -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-    u.i(1, 'cond'),
-    u.t ' ? ',
-    u.i(2, 'then'),
-    u.t ' : ',
-    u.i(3, 'else'),
-  }),
+  u.s('ternary', u.fmt('{} and {} or {}', { u.i(1, 'cond'), u.i(2, 'value'), u.i(3, 'fallback') })),
 }

@@ -74,7 +74,7 @@ return {
       ]],
       {
         u.i(1, 'record'),
-        u.i(2, 'field1, field2'),
+        u.i(2, '$field1, $field2'),
         u.i(3, 'expression'),
         u.i(4, 'default expression'),
       }
