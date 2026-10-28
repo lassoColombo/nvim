@@ -6,5 +6,4 @@ return {
   require 'plugs.qol.gitsigns',
   require 'plugs.qol.telescope',
   require 'plugs.qol.whichkey',
-  require 'plugs.qol.plenary',
 }

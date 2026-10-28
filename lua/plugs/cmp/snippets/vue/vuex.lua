@@ -1,4 +1,4 @@
-local u = require 'plugs.cmp.snippets.utils'
+local u = require 'plugs.cmp.snippet_utils'
 
 return {
   u.s('vimportvuex', u.fmt("import {{ mapState, mapGetters, mapActions, mapMutations }} from 'vuex'", {})),

@@ -2,24 +2,13 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  init = function()
-    -- if provided, formats the range
-    vim.api.nvim_create_user_command('Format', function(args)
-      local range = nil
-      if args.count ~= -1 then
-        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-        range = {
-          start = { args.line1, 0 },
-          ['end'] = { args.line2, end_line:len() },
-        }
-      end
-      require('conform').format { async = true, lsp_format = 'fallback', range = range }
-    end, { range = true })
-  end,
   keys = {
     {
       '<leader>f',
-      '<cmd>Format<cr>',
+      function()
+        -- in visual mode conform formats the selection on its own
+        require('conform').format { async = true, lsp_format = 'fallback' }
+      end,
       mode = { 'n', 'v' },
       desc = '[F]ormat',
     },
@@ -35,66 +24,48 @@ return {
     },
   },
 
-  opts = function()
-    local opts = {
-      notify_on_error = true,
-      format_on_save = function(bufnr)
-        -- Disable with a global variable
-        if not vim.g.autoformat_on_save then
+  opts = {
+    notify_on_error = true,
+    format_on_save = function(bufnr)
+      if not vim.g.autoformat_on_save then
+        return
+      end
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      for _, dir in ipairs { '/node_modules/', 'venv/' } do
+        if bufname:find(dir, 1, true) then
           return
         end
-        -- Disable autoformat on certain filetypes
-        local ignore_filetypes = { --[[ 'sql' ]]
-        }
-        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-          return
-        end
-        -- Disable autoformat for files in a certain path
-        local ignore_paths = { '/node_modules/', '/*venv*/', '/.*venv*/' }
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-        for _, path in ipairs(ignore_paths) do
-          if bufname:match(path) then
-            return
-          end
-        end
-        return { timeout_ms = 500, lsp_format = 'fallback' }
-      end,
+      end
+      return { timeout_ms = 500, lsp_format = 'fallback' }
+    end,
 
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-        sql = { 'sqlfmt' },
-        mysql = { 'sqlfmt' },
-        yaml = { 'prettier' },
-        -- nu = { 'nufmt' },
-        json = { 'prettier' },
-        javascript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescript = { 'prettier' },
-        typescriptreact = { 'prettier' },
-        vue = { 'prettier' },
-        html = { 'prettier' },
-        css = { 'prettier' },
-        less = { 'prettier' },
-        scss = { 'prettier' },
-        go = { 'goimports', 'golines' },
-        rust = { 'rustfmt' },
-        terraform = { 'terraform_fmt' },
-        ['terraform-vars'] = { 'terraform_fmt' },
-        hcl = { 'terraform_fmt' },
-      },
-    }
-    -- formatters default configuration
-    require('conform').formatters.black = {
-      -- prepend_args = { '--line-length', '160' },
-    }
-    require('conform').formatters.sqlfmt = {
-      prepend_args = { '-l', '80' },
-    }
-    -- golines defaults to 100 columns and wraps one argument per line: too aggressive for Go.
-    require('conform').formatters.golines = {
-      prepend_args = { '--max-len', '125' },
-    }
-    return opts
-  end,
+    formatters_by_ft = {
+      lua = { 'stylua' },
+      python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+      sql = { 'sqlfmt' },
+      mysql = { 'sqlfmt' },
+      yaml = { 'prettier' },
+      json = { 'prettier' },
+      javascript = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      typescript = { 'prettier' },
+      typescriptreact = { 'prettier' },
+      vue = { 'prettier' },
+      html = { 'prettier' },
+      css = { 'prettier' },
+      less = { 'prettier' },
+      scss = { 'prettier' },
+      go = { 'goimports', 'golines' },
+      rust = { 'rustfmt' },
+      terraform = { 'terraform_fmt' },
+      ['terraform-vars'] = { 'terraform_fmt' },
+      hcl = { 'terraform_fmt' },
+    },
+
+    formatters = {
+      sqlfmt = { prepend_args = { '-l', '80' } },
+      -- golines defaults to 100 columns and wraps one argument per line: too aggressive for Go.
+      golines = { prepend_args = { '--max-len', '125' } },
+    },
+  },
 }

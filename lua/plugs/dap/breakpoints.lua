@@ -15,7 +15,7 @@ return {
         require('goto-breakpoints').prev()
       end,
       mode = { 'n', 'v' },
-      desc = ']Previous breakpoint',
+      desc = '[Previous breakpoint',
     },
   },
 }

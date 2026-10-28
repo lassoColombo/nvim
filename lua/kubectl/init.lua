@@ -52,7 +52,7 @@ local function _do(method)
     exit_code = vim.v.shell_error
   end
 
-  local title = 'kubectl apply'
+  local title = 'kubectl ' .. method
   if exit_code == 0 then
     vim.notify(table.concat(result, '\n'), vim.log.levels.INFO, { title = title })
   else

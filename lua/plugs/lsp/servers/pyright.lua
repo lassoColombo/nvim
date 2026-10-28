@@ -9,7 +9,9 @@ return {
     },
   },
   settings = {
-    disableOrganizeImports = true,
+    pyright = {
+      disableOrganizeImports = true, -- ruff owns it
+    },
     python = {
       analysis = {
         typeCheckingMode = 'basic',

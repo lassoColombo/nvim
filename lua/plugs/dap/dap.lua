@@ -15,48 +15,135 @@
 --               <leader><leader>t  debug last test
 -- ══════════════════════════════════════════
 
+local function dap()
+  return require 'dap'
+end
+
+local function dapui()
+  return require 'dapui'
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
-    'williamboman/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   keys = {
     -- Breakpoints
-    { '<F1>', function() require('dap').toggle_breakpoint() end, desc = 'DAP toggle breakpoint' },
-    { '<F2>', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'DAP conditional breakpoint' },
-    { '<F3>', function() require('dap').clear_breakpoints(); vim.notify('DAP breakpoints cleared', vim.log.levels.INFO) end, desc = 'DAP clear breakpoints' },
-    { '<F4>', function() require('dap').run_to_cursor() end, desc = 'DAP run to cursor' },
+    {
+      '<F1>',
+      function()
+        dap().toggle_breakpoint()
+      end,
+      desc = 'DAP toggle breakpoint',
+    },
+    {
+      '<F2>',
+      function()
+        dap().set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end,
+      desc = 'DAP conditional breakpoint',
+    },
+    {
+      '<F3>',
+      function()
+        dap().clear_breakpoints()
+        vim.notify('DAP breakpoints cleared', vim.log.levels.INFO)
+      end,
+      desc = 'DAP clear breakpoints',
+    },
+    {
+      '<F4>',
+      function()
+        dap().run_to_cursor()
+      end,
+      desc = 'DAP run to cursor',
+    },
     -- Session
-    { '<F5>', function() require('dap').continue() end, desc = 'DAP continue / start' },
-    { '<F6>', function() require('dap').restart() end, desc = 'DAP restart' },
-    { '<F7>', function() require('dap').disconnect { terminateDebuggee = true }; require('dap').close(); require('dapui').close(); vim.notify('DAP session quit', vim.log.levels.WARN) end, desc = 'DAP quit session' },
+    {
+      '<F5>',
+      function()
+        dap().continue()
+      end,
+      desc = 'DAP continue / start',
+    },
+    {
+      '<F6>',
+      function()
+        dap().restart()
+      end,
+      desc = 'DAP restart',
+    },
+    {
+      '<F7>',
+      function()
+        dap().terminate()
+        dapui().close()
+        vim.notify('DAP session quit', vim.log.levels.WARN)
+      end,
+      desc = 'DAP quit session',
+    },
     -- Inspect
-    { '<F8>', function() require('dapui').toggle() end, desc = 'DAP toggle UI' },
-    { '<F9>', function() require('dapui').eval(nil, { enter = true }) end, desc = 'DAP eval' },
+    {
+      '<F8>',
+      function()
+        dapui().toggle()
+      end,
+      desc = 'DAP toggle UI',
+    },
+    {
+      '<F9>',
+      function()
+        dapui().eval(nil, { enter = true })
+      end,
+      desc = 'DAP eval',
+    },
     -- Step
-    { '<F10>', function() require('dap').step_over() end, desc = 'DAP step over' },
-    { '<F11>', function() require('dap').step_into() end, desc = 'DAP step into' },
-    { '<F12>', function() require('dap').step_out() end, desc = 'DAP step out' },
+    {
+      '<F10>',
+      function()
+        dap().step_over()
+      end,
+      desc = 'DAP step over',
+    },
+    {
+      '<F11>',
+      function()
+        dap().step_into()
+      end,
+      desc = 'DAP step into',
+    },
+    {
+      '<F12>',
+      function()
+        dap().step_out()
+      end,
+      desc = 'DAP step out',
+    },
     -- Go test debugging
-    { '<leader><leader>r', function() require('dap-go').debug_test() end, ft = 'go', desc = 'DAP Go debug test' },
-    { '<leader><leader>t', function() require('dap-go').debug_last_test() end, ft = 'go', desc = 'DAP Go debug last test' },
+    {
+      '<leader><leader>r',
+      function()
+        require('dap-go').debug_test()
+      end,
+      ft = 'go',
+      desc = 'DAP Go debug test',
+    },
+    {
+      '<leader><leader>t',
+      function()
+        require('dap-go').debug_last_test()
+      end,
+      ft = 'go',
+      desc = 'DAP Go debug last test',
+    },
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
-    require('mason-nvim-dap').setup {
-      automatic_installation = true,
-      handlers = {},
-      ensure_installed = {
-        'debugpy',
-        'delve',
-      },
-    }
 
     ---@diagnostic disable-next-line: missing-fields
     dapui.setup {

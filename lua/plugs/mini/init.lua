@@ -3,11 +3,11 @@ return {
   config = function()
     require('mini.git').setup()
     require('mini.diff').setup(require 'plugs.mini.diff')
-    require('mini.files').setup(require 'plugs.mini.files')
+    require('mini.files').setup()
     require('mini.ai').setup(require 'plugs.mini.around-inside')
     require('mini.hipatterns').setup(require 'plugs.mini.hipatterns')
     require('mini.surround').setup(require 'plugs.mini.surround')
-    require('mini.pairs').setup(require 'plugs.mini.pairs')
+    require('mini.pairs').setup()
     require('mini.indentscope').setup(require 'plugs.mini.indentscope')
     require('mini.icons').setup()
 

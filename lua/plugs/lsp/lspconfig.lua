@@ -20,29 +20,28 @@ return {
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+    -- `{}` = lspconfig defaults; anything else lives in plugs/lsp/servers/<name>.lua
     local servers = {
-      ansiblels = require 'plugs.lsp.servers.ansiblels',
-      gopls = require 'plugs.lsp.servers.gopls',
+      ansiblels = {},
+      cssls = {},
+      emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
+      eslint = {},
+      gopls = {},
+      html = {},
+      jdtls = require 'plugs.lsp.servers.jdtls',
       jsonls = require 'plugs.lsp.servers.jsonls',
       lua_ls = require 'plugs.lsp.servers.luals',
-      pyright = require 'plugs.lsp.servers.pyright',
-      ruff = require 'plugs.lsp.servers.ruff',
-      sqls = require 'plugs.lsp.servers.sqls',
-      taplo = require 'plugs.lsp.servers.taplo',
-      yamlls = require 'plugs.lsp.servers.yamlls',
-      rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',
-      cssls = {},
-      html = {},
-      eslint = {},
-      ts_ls = require 'plugs.lsp.servers.ts_ls',
-      vue_ls = require 'plugs.lsp.servers.vue_ls',
-      emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
       nushell = require 'plugs.lsp.servers.nushell',
-      jdtls = require 'plugs.lsp.servers.jdtls',
+      pyright = require 'plugs.lsp.servers.pyright',
+      ruff = {},
+      rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',
+      sqls = require 'plugs.lsp.servers.sqls',
+      taplo = {},
       terraformls = require 'plugs.lsp.servers.terraformls',
+      ts_ls = require 'plugs.lsp.servers.ts_ls',
+      vue_ls = {},
+      yamlls = require 'plugs.lsp.servers.yamlls',
     }
-
-    vim.g.markdown_fenced_languages = { 'ts=typescript' }
 
     require('mason-tool-installer').setup {
       ensure_installed = {
@@ -67,6 +66,9 @@ return {
         'taplo',
         'terraform-ls',
         'yaml-language-server',
+        -- debug adapters
+        'debugpy',
+        'delve',
         -- formatters / linters / tools
         'ansible-lint',
         'goimports',

@@ -1,4 +1,4 @@
-local u = require 'plugs.cmp.snippets.utils'
+local u = require 'plugs.cmp.snippet_utils'
 
 return {
   -- Basic match

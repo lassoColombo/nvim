@@ -43,10 +43,8 @@ local copyimport = function()
     return
   end
 
-  if i then
-    vim.fn.setreg('*', i)
-    vim.notify('Copied: ' .. i)
-  end
+  vim.fn.setreg('*', i)
+  vim.notify('Copied: ' .. i)
 end
 
 vim.api.nvim_create_autocmd('User', {
@@ -69,7 +67,7 @@ vim.api.nvim_create_autocmd('User', {
       end, { buffer = b, desc = m.desc })
     end
 
-    vim.keymap.set('n', 'yi', copyimport, { buffer = b, desc = 'Yank relative' })
+    vim.keymap.set('n', 'yi', copyimport, { buffer = b, desc = 'Yank import statement' })
   end,
 })
 

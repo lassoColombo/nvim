@@ -1,7 +1,5 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 --
-vim.opt.termguicolors = true
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -20,6 +18,7 @@ vim.g.loaded_gzip = 1
 vim.g.loaded_tarPlugin = 1
 
 vim.g.have_nerd_font = true
+vim.g.markdown_fenced_languages = { 'ts=typescript' }
 
 vim.o.number = true
 vim.o.relativenumber = true
@@ -31,8 +30,6 @@ vim.o.showmode = false
 vim.o.breakindent = true
 
 vim.o.undofile = true
-
-vim.o.autoread = true
 
 vim.o.ignorecase = true
 
@@ -76,7 +73,6 @@ vim.opt.smartindent = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.o.foldenable = true
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''

@@ -13,7 +13,12 @@ vim.keymap.set('n', '<C-up>', '<cmd>horizontal resize +3<CR>', { desc = '[]Resiz
 vim.keymap.set('n', '<C-down>', '<cmd>horizontal resize -3<CR>', { desc = '[]Resize down' })
 
 -- lists
-vim.keymap.set('n', '<leader>q', '<cmd>copen<CR>', { desc = '[]Open [Q]uic' })
+vim.keymap.set('n', '<leader>q', '<cmd>copen<CR>', { desc = 'Open [Q]uickfix' })
+
+-- diff mode: jump between changes. gitsigns overrides these per buffer with
+-- hunk navigation; this is the fallback for buffers it is not attached to.
+vim.keymap.set('n', ']h', ']c', { desc = 'Jump to next diff change' })
+vim.keymap.set('n', '[h', '[c', { desc = 'Jump to previous diff change' })
 
 -- copy paste from sys clip
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"+p', { desc = '[P]aste from system clipboard' })
@@ -49,14 +54,9 @@ end, { desc = '[T]oggle line[N]umbers' })
 
 -- toggle diagnostics
 vim.keymap.set('n', '<leader><leader><leader>d', function()
-  if vim.diagnostic.is_enabled() then
-    vim.diagnostic.enable(false)
-  else
-    vim.diagnostic.enable(true)
-  end
-  local is_enabled = vim.diagnostic.is_enabled()
-  local log_level = (is_enabled and vim.log.levels.INFO or vim.log.levels.WARN)
-  vim.notify('set diagnostics to ' .. tostring(is_enabled), log_level)
+  local enabled = not vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(enabled)
+  vim.notify('set diagnostics to ' .. tostring(enabled), enabled and vim.log.levels.INFO or vim.log.levels.WARN)
 end, { desc = '[T]oggle [D]iagnostics' })
 
 -- ts get node type

@@ -39,13 +39,13 @@ Each category has an `init.lua` that returns a flat list of plugin specs (aggreg
 
 ### LSP Server Configs
 
-Individual server configs live in `lua/plugs/lsp/servers/<name>.lua`. Each file returns a table passed directly to `lspconfig.<server>.setup()`. Add a new server by creating a file there and requiring it in `lua/plugs/lsp/lspconfig.lua`.
+Individual server configs live in `lua/plugs/lsp/servers/<name>.lua`. Each file returns a `vim.lsp.Config` table. Servers that use lspconfig defaults are listed as `name = {}` directly in `lua/plugs/lsp/lspconfig.lua`; add a file only when the server needs settings.
 
-Currently configured: `pyright`, `ruff`, `gopls`, `rust_analyzer`, `lua_ls`, `jsonls`, `yamlls`, `ansiblels`, `sqls`, `taplo`, `eslint`.
+The full server list is the `servers` table in `lua/plugs/lsp/lspconfig.lua`.
 
 ### Snippets
 
-LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` organized by language. Each language file returns a list of snippet definitions using helpers from `snippets/utils.lua`.
+LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` and loaded by LuaSnip's Lua loader: `<ft>.lua` or `<ft>/*.lua`, where `<ft>` is the Neovim filetype (`python`, `nu`, `typescript`, ...). Each file returns a list of snippet definitions using helpers from `lua/plugs/cmp/snippet_utils.lua`. javascript/jsx/tsx reuse the typescript snippets via `filetype_extend`.
 
 ### Custom Modules (`lua/`)
 
@@ -59,6 +59,6 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` organized by lang
 
 - **Shell**: the default (`$SHELL`, zsh). Only `lua/plugs/lsp/servers/sqls.lua` calls `nu` explicitly (`nu -l -c`, which loads env.nu and config.nu so `use sqls-config` resolves).
 - **Mason**: Tool/server installation is managed via `mason-tool-installer`. Add tools to the ensure_installed list in `lua/plugs/lsp/lspconfig.lua`.
-- **Formatters**: Configured in `lua/plugs/qol/conform.lua` with per-filetype formatter lists. Autoformat on save is enabled globally via `vim.g.autoformat`.
+- **Formatters**: Configured in `lua/plugs/qol/conform.lua` with per-filetype formatter lists. Autoformat on save is enabled globally via `vim.g.autoformat_on_save`.
 - **Lazy loading**: Plugins specify `event`, `cmd`, or `ft` keys; avoid setting `lazy = false` unless the plugin must be available immediately on startup.
 - **`<leader>`**: Space key.

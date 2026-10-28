@@ -2,19 +2,13 @@ local M = {}
 
 local sessions_dir = vim.fn.stdpath 'data' .. '/sessions'
 
-local function ensure_sessions_dir()
-  if vim.fn.isdirectory(sessions_dir) == 0 then
-    vim.fn.mkdir(sessions_dir, 'p')
-  end
-end
-
 local function generate_session_path(path)
   local name = path:gsub('[/\\:]', '%%') .. '.vim'
   return vim.fs.joinpath(sessions_dir, name)
 end
 
 M.setup = function()
-  ensure_sessions_dir()
+  vim.fn.mkdir(sessions_dir, 'p')
   vim.api.nvim_create_autocmd('VimLeavePre', {
     callback = function()
       M.write { silent = true }
@@ -46,22 +40,9 @@ M.write = function(opts)
 end
 
 M.list = function()
-  local uv = vim.uv
-  local files = {}
-  local handle = uv.fs_scandir(sessions_dir)
-
-  if handle then
-    while true do
-      local name, t = uv.fs_scandir_next(handle)
-      if not name then
-        break
-      end
-      if t == 'file' then
-        table.insert(files, name)
-      end
-    end
-  end
-  return files
+  return vim.fn.readdir(sessions_dir, function(name)
+    return vim.fn.filereadable(vim.fs.joinpath(sessions_dir, name))
+  end)
 end
 
 M.manage = function()
