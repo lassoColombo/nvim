@@ -88,8 +88,3 @@ vim.o.foldlevelstart = 99
 vim.opt.diffopt:remove 'linematch:40'
 vim.opt.diffopt:append 'linematch:60'
 vim.opt.diffopt:append 'algorithm:histogram'
-
-vim.opt.sh = 'nu'
-vim.opt.shellquote = ''
-vim.opt.shellxquote = ''
-vim.opt.shellcmdflag = '--config ~/.config/nushell/config.nu --env-config ~/.config/nushell/env.nu -c'

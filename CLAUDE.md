@@ -57,7 +57,7 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` organized by lang
 
 ## Key Conventions
 
-- **Shell**: Nushell (`nu`) is configured as the shell in `opts.lua`. Shell commands in Lua must be compatible with Nushell syntax.
+- **Shell**: the default (`$SHELL`, zsh). Only `lua/plugs/lsp/servers/sqls.lua` calls `nu` explicitly (`nu -l -c`, which loads env.nu and config.nu so `use sqls-config` resolves).
 - **Mason**: Tool/server installation is managed via `mason-tool-installer`. Add tools to the ensure_installed list in `lua/plugs/lsp/lspconfig.lua`.
 - **Formatters**: Configured in `lua/plugs/qol/conform.lua` with per-filetype formatter lists. Autoformat on save is enabled globally via `vim.g.autoformat`.
 - **Lazy loading**: Plugins specify `event`, `cmd`, or `ft` keys; avoid setting `lazy = false` unless the plugin must be available immediately on startup.
