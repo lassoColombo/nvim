@@ -4,7 +4,7 @@
 -- Nushell module's convention) binds a file to a connection through its
 -- top-level folder: anything under `<alias>/` targets the connection `<alias>`.
 -- Files elsewhere take the session default (`:Usql <alias>` or
--- $USQL_CONNECTION, which `usql edit -C` exports) and are otherwise left
+-- $USQL_CONNECTION, which `usql query edit -C` exports) and are otherwise left
 -- on whatever the server is using.
 --
 -- sqls keeps ONE current connection per server process, so this is a sync, not a
