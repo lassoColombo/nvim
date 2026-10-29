@@ -13,6 +13,5 @@ return {
     require('mini.statusline').setup()
 
     require 'plugs.mini.keys'
-    require 'plugs.mini.aucmd'
   end,
 }

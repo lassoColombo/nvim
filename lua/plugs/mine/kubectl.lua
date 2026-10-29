@@ -3,7 +3,6 @@ return {
 
   ft = 'yaml',
   name = 'kubectl',
-  config = function() end,
   keys = {
     {
       '<leader><leader>kr',
