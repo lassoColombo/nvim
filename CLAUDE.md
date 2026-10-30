@@ -35,7 +35,7 @@ Each category has an `init.lua` that returns a flat list of plugin specs (aggreg
 | `qol/` | Telescope, conform, gitsigns, colorscheme, etc. |
 | `dap/` | Debug adapter (Python via debugpy, Go via delve) |
 | `lang/` | Language-specific extras (markdown, Python venv, SQL) |
-| `mine/` | Custom modules: sessions, filewatch, kubectl, usql |
+| `mine/` | Custom modules: sessions, filewatch, kubectl |
 
 ### LSP Server Configs
 
@@ -52,11 +52,12 @@ LuaSnip snippets are hand-written in `lua/plugs/cmp/snippets/` and loaded by Lua
 - `sessions/` — session save/restore
 - `filewatch/` — keeps buffers in sync across multiple Neovim instances
 - `kubectl/` — kubectl CLI integration
-- `usql/` — keeps the sqls LSP on the connection a query file belongs to (top-level folder of `$USQL_QUERIES` = alias; `:Usql <alias>` / `$USQL_CONNECTION` as session default); aliases are read from the server (`showConnections`), switches go through `switchConnections`
+
+sqls follows the `usql` Nushell module's queries dir without a module of its own: `lua/plugs/lsp/servers/sqls.lua` gives a buffer under `<queries>/<folder>/` its own server (root_dir = the folder) started on one connection, the folder's or `$USQL_CONNECTION`, with the config rendered from `usql -X -c '\cset'` right before the spawn; elsewhere sqls runs bare on its own config.
 
 ## Key Conventions
 
-- **Shell**: the default (`$SHELL`, zsh). Only `lua/plugs/lsp/servers/sqls.lua` calls `nu` explicitly (`nu -l -c`, which loads env.nu and config.nu so `use sqls-config` resolves).
+- **Shell**: the default (`$SHELL`, zsh). Nothing calls `nu` explicitly.
 - **Mason**: Tool/server installation is managed via `mason-tool-installer`. Add tools to the ensure_installed list in `lua/plugs/lsp/lspconfig.lua`.
 - **Formatters**: Configured in `lua/plugs/qol/conform.lua` with per-filetype formatter lists. Autoformat on save is enabled globally via `vim.g.autoformat_on_save`.
 - **Lazy loading**: Plugins specify `event`, `cmd`, or `ft` keys; avoid setting `lazy = false` unless the plugin must be available immediately on startup.
