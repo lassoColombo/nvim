@@ -31,7 +31,7 @@ return {
       jdtls = require 'plugs.lsp.servers.jdtls',
       jsonls = require 'plugs.lsp.servers.jsonls',
       lua_ls = require 'plugs.lsp.servers.luals',
-      nushell = require 'plugs.lsp.servers.nushell',
+      nushell = {},
       pyright = require 'plugs.lsp.servers.pyright',
       ruff = {},
       rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',

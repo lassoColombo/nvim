@@ -45,7 +45,7 @@ end, { desc = '[T]oggle relative line[N]umbers' })
 
 -- toggle line numbers
 vim.keymap.set('n', '<leader><leader><leader>N', function()
-  toggle('relativenumber', 'wo', false)
+  vim.wo.relativenumber = false
   toggle('number', 'wo')
 end, { desc = '[T]oggle line[N]umbers' })
 

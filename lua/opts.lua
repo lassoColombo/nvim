@@ -18,7 +18,6 @@ vim.g.loaded_gzip = 1
 vim.g.loaded_tarPlugin = 1
 
 vim.g.have_nerd_font = true
-vim.g.markdown_fenced_languages = { 'ts=typescript' }
 
 vim.o.number = true
 vim.o.relativenumber = true
