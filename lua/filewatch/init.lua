@@ -1,5 +1,5 @@
 -- filewatch: keep buffers in sync with the file on disk when the same file is
--- edited from several nvim instances (e.g. the same repo in multiple zellij
+-- edited from several nvim instances (e.g. the same repo in multiple tmux
 -- sessions).
 --
 -- What nvim does on its own: it compares timestamps only after a shell
