@@ -78,6 +78,9 @@ return {
         -- Toggles
         map('n', '<leader><leader><leader>b', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git [P]review hunk inline' })
+
+        -- Text object
+        map({ 'o', 'x' }, 'gh', gitsigns.select_hunk, { desc = 'Hunk range textobject' })
       end,
     },
   },

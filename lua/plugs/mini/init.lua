@@ -1,8 +1,6 @@
 return {
   'nvim-mini/mini.nvim',
   config = function()
-    require('mini.git').setup()
-    require('mini.diff').setup(require 'plugs.mini.diff')
     require('mini.files').setup()
     require('mini.ai').setup(require 'plugs.mini.around-inside')
     require('mini.hipatterns').setup(require 'plugs.mini.hipatterns')
