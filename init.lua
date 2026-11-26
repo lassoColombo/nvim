@@ -1,6 +1,8 @@
 require 'opts'
 require 'keys'
 require 'aucmds'
+require('filewatch').setup()
+require('sessions').setup()
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then

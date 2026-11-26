@@ -12,12 +12,23 @@ M.setup = function()
   -- Only keep an active session (resumed or written in this run) up to date, so a
   -- quick `nvim file`, a commit message or a `kubectl edit` can't replace it.
   vim.api.nvim_create_autocmd('VimLeavePre', {
+    group = vim.api.nvim_create_augroup('sessions', { clear = true }),
     callback = function()
       if vim.v.this_session ~= '' then
         M.write { silent = true }
       end
     end,
   })
+
+  vim.keymap.set('n', '<leader><leader>sl', function()
+    vim.notify(vim.inspect(M.list()))
+  end, { desc = '[S]essions [L]ist' })
+  vim.keymap.set('n', '<leader><leader>ss', M.resume, { desc = '[S]essions re[S]ume' })
+  vim.keymap.set('n', '<leader><leader>sw', M.write, { desc = '[S]essions [W]rite' })
+  vim.keymap.set('n', '<leader><leader>sm', M.manage, { desc = '[S]essions [M]anage' })
+  vim.keymap.set('n', '<leader><leader>sd', function()
+    vim.notify(vim.inspect(M.detected()))
+  end, { desc = '[S]essions [D]etected' })
 end
 
 M.resume = function()

@@ -175,6 +175,9 @@ M.setup = function(opts)
   vim.api.nvim_create_user_command('FileWatchDiff', function()
     M.diff()
   end, { desc = 'Diff current buffer against its file on disk' })
+  vim.keymap.set('n', '<leader><leader>fd', function()
+    M.diff()
+  end, { desc = '[F]ilewatch [D]iff buffer vs disk' })
 
   if timer then
     timer:stop()
