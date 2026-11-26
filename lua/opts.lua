@@ -17,8 +17,6 @@ vim.g.loaded_zipPlugin = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_tarPlugin = 1
 
-vim.g.have_nerd_font = true
-
 vim.o.number = true
 vim.o.relativenumber = true
 
@@ -65,8 +63,6 @@ vim.o.pumheight = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-
-vim.g.autoformat_on_save = true
 
 vim.opt.tabstop = 2
 vim.opt.smartindent = true

@@ -1,3 +1,6 @@
+-- read by format_on_save, flipped by <leader><leader><leader>f
+local autoformat_on_save = true
+
 return {
   {
     'stevearc/conform.nvim',
@@ -16,8 +19,8 @@ return {
       {
         '<leader><leader><leader>f',
         function()
-          vim.g.autoformat_on_save = not vim.g.autoformat_on_save
-          require 'toggle'('autoformat on save', vim.g.autoformat_on_save)
+          autoformat_on_save = not autoformat_on_save
+          require 'toggle'('autoformat on save', autoformat_on_save)
         end,
         mode = 'n',
         desc = '[T]oggle auto[F]ormat',
@@ -27,7 +30,7 @@ return {
     opts = {
       notify_on_error = true,
       format_on_save = function(bufnr)
-        if not vim.g.autoformat_on_save then
+        if not autoformat_on_save then
           return
         end
         local bufname = vim.api.nvim_buf_get_name(bufnr)
