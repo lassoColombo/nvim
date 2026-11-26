@@ -17,6 +17,24 @@ vim.keymap.set('n', '<leader>q', '<cmd>copen<CR>', { desc = 'Open [Q]uickfix' })
 vim.keymap.set('n', ']h', ']c', { desc = 'Jump to next diff change' })
 vim.keymap.set('n', '[h', '[c', { desc = 'Jump to previous diff change' })
 
+-- diagnostics to quickfix
+vim.keymap.set('n', '<leader>d', function()
+  vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)), 'r')
+  vim.cmd.copen()
+end, { desc = '[D]iagnostics (buffer)' })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.setqflist, { desc = '[D]iagnostics (workspace)' })
+
+-- lsp
+vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, { desc = '[R]eferences' })
+vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename, { desc = '[R]ename' })
+vim.keymap.set('n', '<leader>T', vim.lsp.buf.type_definition, { desc = '[T]ype definition' })
+vim.keymap.set('n', '<leader>t', vim.lsp.buf.definition, { desc = 'Defini[t]ion' })
+vim.keymap.set('n', '<leader>N', vim.lsp.buf.declaration, { desc = 'Declaratio[N]' })
+vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, { desc = '[I]mplementations' })
+vim.keymap.set({ 'n', 'x' }, '<leader>a', vim.lsp.buf.code_action, { desc = 'Code [A]ction' })
+vim.keymap.set('n', '<leader>s', vim.lsp.buf.document_symbol, { desc = '[S]ymbols (buffer)' })
+vim.keymap.set('n', '<leader>S', vim.lsp.buf.workspace_symbol, { desc = '[S]ymbols (workspace)' })
+
 -- copy paste from sys clip
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"+p', { desc = '[P]aste from system clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
@@ -55,6 +73,11 @@ vim.keymap.set('n', '<leader><leader><leader>d', function()
   vim.diagnostic.enable(enabled)
   vim.notify('set diagnostics to ' .. tostring(enabled), enabled and vim.log.levels.INFO or vim.log.levels.WARN)
 end, { desc = '[T]oggle [D]iagnostics' })
+
+-- toggle inlay hints
+vim.keymap.set('n', '<leader><leader><leader>h', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 })
+end, { desc = '[T]oggle Inlay [H]ints' })
 
 -- ts get node type
 local function get_node_type()

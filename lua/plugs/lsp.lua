@@ -7,17 +7,6 @@ return {
       'b0o/schemastore.nvim',
     },
     config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('base-lsp-attach', { clear = true }),
-        callback = function(event)
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          require('plugs.lsp.keys').map(event.buf, client)
-          require('plugs.lsp.aucmds').set(event.buf, client)
-        end,
-      })
-
-      require 'plugs.lsp.opts'
-
       vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
 
       -- lspconfig's defaults, merged with after/lsp/<name>.lua where a server needs settings

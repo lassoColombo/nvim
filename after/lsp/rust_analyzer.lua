@@ -29,7 +29,7 @@ return {
       },
 
       -- Inlay hints stay off until <leader><leader><leader>h toggles them (see
-      -- plugs/lsp/keys.lua), so this block can afford to be generous: it is a
+      -- lua/keys.lua), so this block can afford to be generous: it is a
       -- "show me what the compiler inferred" mode, not permanent screen noise.
       inlayHints = {
         -- Elided lifetimes written out: `fn f<'1>(s: &'1 str) -> &'1 str`.
