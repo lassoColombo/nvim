@@ -154,6 +154,8 @@ return {
     }
 
     require('mini.icons').setup()
+    -- telescope and diffview ask for nvim-web-devicons: serve them mini.icons
+    MiniIcons.mock_nvim_web_devicons()
     require('mini.statusline').setup()
 
     vim.api.nvim_create_autocmd('User', {

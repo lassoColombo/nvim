@@ -9,6 +9,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Close read-only helper windows with q',
+  group = vim.api.nvim_create_augroup('q-quits', { clear = true }),
+  pattern = { 'checkhealth', 'git', 'gitsigns-blame', 'help', 'qf', 'sqls_output' },
+  callback = function(event)
+    vim.keymap.set('n', 'q', '<cmd>q<CR>', { desc = 'quit', buffer = event.buf })
+  end,
+})
+
 -- Highlight the symbol under the cursor while an attached client can provide it
 local lsp_highlight = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
 

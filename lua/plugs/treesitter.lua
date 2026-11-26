@@ -5,7 +5,56 @@ return {
     lazy = false,
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter').install 'all'
+      -- installs whichever of these is missing; anything else on demand with :TSInstall
+      require('nvim-treesitter').install {
+        -- neovim itself
+        'c',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'regex',
+        'vim',
+        'vimdoc',
+        -- git
+        'diff',
+        'git_config',
+        'git_rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
+        -- shells and ops
+        'bash',
+        'comment',
+        'dockerfile',
+        'hcl',
+        'make',
+        'nu',
+        'terraform',
+        -- data
+        'json',
+        'sql',
+        'toml',
+        'yaml',
+        -- languages
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
+        'java',
+        'python',
+        'rust',
+        -- web
+        'css',
+        'html',
+        'javascript',
+        'jsdoc',
+        'scss',
+        'tsx',
+        'typescript',
+        'vue',
+      }
       local function attach(buf, ft)
         if vim.treesitter.highlighter.active[buf] then
           return

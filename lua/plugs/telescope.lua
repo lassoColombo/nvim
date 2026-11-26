@@ -7,7 +7,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-ui-select.nvim' },
-    'nvim-tree/nvim-web-devicons',
+    'nvim-mini/mini.nvim', -- icons, through MiniIcons.mock_nvim_web_devicons()
   },
   keys = {
     -- lsp searches

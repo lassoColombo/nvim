@@ -1,9 +1,9 @@
-vim.wo.wrap = true
+vim.opt_local.wrap = true
 
 -- Prompt for a Nushell module name (defaulting to the session cwd's basename),
 -- generate its `# Commands` section, and drop it in at the cursor. The module
--- must be importable by name (it lives on NU_LIB_DIRS) — `--config`/`--env-config`
--- load that search path, and we `use` it so its commands show up in `scope commands`.
+-- must be importable by name (it lives on NU_LIB_DIRS) — a login shell (`-l`)
+-- loads that search path, and we `use` it so its commands show up in `scope commands`.
 vim.keymap.set('n', '<leader><leader>C', function()
   -- Capture the target buffer/line now; `vim.ui.input` is async, so resolve
   -- where to insert before the prompt steals focus.
@@ -18,10 +18,7 @@ vim.keymap.set('n', '<leader><leader>C', function()
 
     local result = vim.fn.systemlist {
       'nu',
-      '--config',
-      vim.fn.expand '~/.config/nushell/config.nu',
-      '--env-config',
-      vim.fn.expand '~/.config/nushell/env.nu',
+      '-l',
       '-c',
       string.format('use %s; use readme-commands-section-generator; readme-commands-section-generator generate %s', module, module),
     }
