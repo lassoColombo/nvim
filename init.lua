@@ -12,13 +12,5 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup {
-  require 'plugs.treesitter',
-  require 'plugs.lsp',
-  require 'plugs.cmp',
-  require 'plugs.mini',
-  require 'plugs.mine',
-  require 'plugs.lang',
-  require 'plugs.qol',
-  require 'plugs.dap',
-}
+-- every lua/plugs/<concern>.lua (or <concern>/init.lua) returns lazy specs
+require('lazy').setup 'plugs'
