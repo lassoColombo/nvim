@@ -19,31 +19,6 @@ return {
 
       require 'plugs.lsp.opts'
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      -- `{}` = lspconfig defaults; anything else lives in plugs/lsp/servers/<name>.lua
-      local servers = {
-        ansiblels = {},
-        cssls = {},
-        emmet_language_server = require 'plugs.lsp.servers.emmet_language_server',
-        eslint = {},
-        gopls = {},
-        html = {},
-        jdtls = require 'plugs.lsp.servers.jdtls',
-        jsonls = require 'plugs.lsp.servers.jsonls',
-        lua_ls = require 'plugs.lsp.servers.luals',
-        nushell = {},
-        pyright = require 'plugs.lsp.servers.pyright',
-        ruff = {},
-        rust_analyzer = require 'plugs.lsp.servers.rust_analyzer',
-        sqls = require 'plugs.lsp.servers.sqls',
-        taplo = {},
-        terraformls = require 'plugs.lsp.servers.terraformls',
-        ts_ls = require 'plugs.lsp.servers.ts_ls',
-        vue_ls = {},
-        yamlls = require 'plugs.lsp.servers.yamlls',
-      }
-
       require('mason-tool-installer').setup {
         ensure_installed = {
           -- language servers
@@ -80,14 +55,30 @@ return {
         },
       }
 
-      vim.lsp.config('*', { capabilities = capabilities })
+      vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
 
-      for server_name, server_opts in pairs(servers) do
-        if next(server_opts) then
-          vim.lsp.config(server_name, server_opts)
-        end
-        vim.lsp.enable(server_name)
-      end
+      -- lspconfig's defaults, merged with after/lsp/<name>.lua where a server needs settings
+      vim.lsp.enable {
+        'ansiblels',
+        'cssls',
+        'emmet_language_server',
+        'eslint',
+        'gopls',
+        'html',
+        'jdtls',
+        'jsonls',
+        'lua_ls',
+        'nushell',
+        'pyright',
+        'ruff',
+        'rust_analyzer',
+        'sqls',
+        'taplo',
+        'terraformls',
+        'ts_ls',
+        'vue_ls',
+        'yamlls',
+      }
     end,
   },
   {
