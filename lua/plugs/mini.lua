@@ -55,12 +55,25 @@ end
 
 local toggle_dotfiles = function()
   show_dotfiles = not show_dotfiles
-  vim.notify('set show-dotfiles to ' .. tostring(show_dotfiles))
+  require 'toggle'('show-dotfiles', show_dotfiles)
   MiniFiles.refresh { content = { filter = filter } }
 end
 
 return {
   'nvim-mini/mini.nvim',
+  -- statusline and the default explorer (`nvim <dir>`) are needed at startup
+  lazy = false,
+  keys = {
+    { '<leader>e', minifiles_toggle, desc = '[E]xplorer' },
+    {
+      '<leader><leader><leader>S',
+      function()
+        vim.b.miniindentscope_disable = not vim.b.miniindentscope_disable
+        require 'toggle'('indentscope', not vim.b.miniindentscope_disable)
+      end,
+      desc = '[T]oggle indent[S]cope',
+    },
+  },
   config = function()
     require('mini.files').setup { content = { filter = filter } }
 
@@ -143,8 +156,6 @@ return {
     require('mini.icons').setup()
     require('mini.statusline').setup()
 
-    vim.keymap.set('n', '<leader>e', minifiles_toggle, { desc = '[E]xplorer' })
-
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MiniFilesBufferCreate',
       callback = function(args)
@@ -169,12 +180,5 @@ return {
         vim.keymap.set('n', 'H', toggle_dotfiles, { buffer = b, desc = 'Toggle dotfiles' })
       end,
     })
-
-    vim.keymap.set('n', '<leader><leader><leader>S', function()
-      local state = vim.b.miniindentscope_disable or false
-      vim.b.miniindentscope_disable = not state
-      local level = state and vim.log.levels.INFO or vim.log.levels.WARN
-      vim.notify(('set indentscope to %s'):format(tostring(state)), level)
-    end, { desc = '[T]oggle indent[S]cope' })
   end,
 }

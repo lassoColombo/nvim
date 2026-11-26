@@ -40,46 +40,35 @@ vim.keymap.set({ 'n', 'v' }, '<C-p>', '"+p', { desc = '[P]aste from system clipb
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
 
 -- toggle stuff on and off
-local function toggle(opt, scope, state)
-  local scopes = { o = vim.o, wo = vim.wo, bo = vim.bo }
-  local target = scopes[scope or 'o']
-  if state == nil then
-    state = not target[opt]
-  end
-  target[opt] = state
-  local level = state and vim.log.levels.INFO or vim.log.levels.WARN
-  vim.notify(('set %s to %s'):format(opt, tostring(state)), level)
-end
+local toggle = require 'toggle'
 
--- toggle wrap
 vim.keymap.set('n', '<leader><leader><leader>w', function()
-  toggle('wrap', 'wo')
+  vim.wo.wrap = not vim.wo.wrap
+  toggle('wrap', vim.wo.wrap)
 end, { desc = '[T]oggle line [W]rap' })
 
--- toggle relative line numbers
 vim.keymap.set('n', '<leader><leader><leader>n', function()
-  toggle('relativenumber', 'wo')
+  vim.wo.relativenumber = not vim.wo.relativenumber
+  toggle('relativenumber', vim.wo.relativenumber)
 end, { desc = '[T]oggle relative line[N]umbers' })
 
--- toggle line numbers
 vim.keymap.set('n', '<leader><leader><leader>N', function()
   vim.wo.relativenumber = false
-  toggle('number', 'wo')
+  vim.wo.number = not vim.wo.number
+  toggle('number', vim.wo.number)
 end, { desc = '[T]oggle line[N]umbers' })
 
--- toggle diagnostics
 vim.keymap.set('n', '<leader><leader><leader>d', function()
-  local enabled = not vim.diagnostic.is_enabled()
-  vim.diagnostic.enable(enabled)
-  vim.notify('set diagnostics to ' .. tostring(enabled), enabled and vim.log.levels.INFO or vim.log.levels.WARN)
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+  toggle('diagnostics', vim.diagnostic.is_enabled())
 end, { desc = '[T]oggle [D]iagnostics' })
 
--- toggle inlay hints
 vim.keymap.set('n', '<leader><leader><leader>h', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 })
+  toggle('inlay hints', vim.lsp.inlay_hint.is_enabled { bufnr = 0 })
 end, { desc = '[T]oggle Inlay [H]ints' })
 
--- ts get node type
+-- treesitter
 local function get_node_type()
   local node = vim.treesitter.get_node()
   if not node then
@@ -91,3 +80,4 @@ end
 vim.keymap.set('n', '<leader><leader>nt', function()
   vim.notify(get_node_type())
 end, { desc = '[N]ode [T]ype' })
+vim.keymap.set('n', '<leader><leader>ni', '<cmd>InspectTree<CR>', { desc = '[T]treesitter [I]nspectTree' })

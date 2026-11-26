@@ -208,7 +208,11 @@ return {
     keys = {
       {
         '<leader><leader><leader>v',
-        '<cmd>DapVirtualTextToggle<cr>',
+        function()
+          local virtual_text = require 'nvim-dap-virtual-text'
+          virtual_text.toggle()
+          require 'toggle'('DAP virtual text', virtual_text.is_enabled())
+        end,
         mode = 'n',
         desc = '[T]oggle DAP [V]irtualText',
       },

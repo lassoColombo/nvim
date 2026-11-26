@@ -76,7 +76,9 @@ return {
           gitsigns.diffthis '@'
         end, { desc = 'git [D]iff against last commit' })
         -- Toggles
-        map('n', '<leader><leader><leader>b', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
+        map('n', '<leader><leader><leader>b', function()
+          require 'toggle'('blame line', gitsigns.toggle_current_line_blame())
+        end, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git [P]review hunk inline' })
 
         -- Text object

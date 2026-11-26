@@ -11,7 +11,11 @@ return {
     keys = {
       {
         '<leader><leader><leader>r',
-        '<cmd>RenderMarkdown toggle<cr>',
+        function()
+          local render = require 'render-markdown'
+          render.toggle()
+          require 'toggle'('render markdown', render.get())
+        end,
         mode = 'n',
         ft = { 'markdown' },
         desc = '[T]oggle [R]ender',
@@ -27,6 +31,7 @@ return {
         '<leader><leader>T',
         '<cmd>TOCList<cr>',
         mode = 'n',
+        ft = { 'markdown' },
         desc = 'Generate [T]OC',
       },
     },
