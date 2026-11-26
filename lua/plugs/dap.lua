@@ -235,4 +235,9 @@ return {
       },
     },
   },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts_extend = { 'ensure_installed' },
+    opts = { ensure_installed = { 'debugpy', 'delve' } },
+  },
 }

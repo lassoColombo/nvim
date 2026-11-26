@@ -3,7 +3,6 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', opts = {} },
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       'hrsh7th/cmp-nvim-lsp',
       'b0o/schemastore.nvim',
     },
@@ -18,42 +17,6 @@ return {
       })
 
       require 'plugs.lsp.opts'
-
-      require('mason-tool-installer').setup {
-        ensure_installed = {
-          -- language servers
-          'ansible-language-server',
-          'eslint-lsp',
-          'gopls',
-          'html-lsp',
-          'jdtls',
-          'json-lsp',
-          'lua-language-server',
-          'pyright',
-          'ruff',
-          -- rust-analyzer intentionally NOT via Mason: it must match the project
-          -- toolchain. It comes from rustup's `rust-analyzer` component, via the
-          -- ~/.cargo/bin proxy, which resolves per-directory from rust-toolchain.toml.
-          'sqls',
-          'typescript-language-server',
-          'vue-language-server',
-          'css-lsp',
-          'emmet-language-server',
-          'taplo',
-          'terraform-ls',
-          'yaml-language-server',
-          -- debug adapters
-          'debugpy',
-          'delve',
-          -- formatters / linters / tools
-          'ansible-lint',
-          'goimports',
-          'golangci-lint',
-          'prettier',
-          'sqlfmt',
-          'stylua',
-        },
-      }
 
       vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
 
@@ -80,6 +43,43 @@ return {
         'yamlls',
       }
     end,
+  },
+  {
+    -- Loaded at startup: it installs what is missing on VimEnter. Other spec
+    -- files add the tools they use (format.lua, dap.lua); every fragment repeats
+    -- opts_extend, since lazy merges fragments in import order and only sees
+    -- the opts_extend of the fragments merged so far.
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    dependencies = { 'williamboman/mason.nvim' },
+    opts_extend = { 'ensure_installed' },
+    opts = {
+      ensure_installed = {
+        -- language servers
+        'ansible-language-server',
+        'css-lsp',
+        'emmet-language-server',
+        'eslint-lsp',
+        'gopls',
+        'html-lsp',
+        'jdtls',
+        'json-lsp',
+        'lua-language-server',
+        'pyright',
+        'ruff',
+        -- rust-analyzer intentionally NOT via Mason: it must match the project
+        -- toolchain. It comes from rustup's `rust-analyzer` component, via the
+        -- ~/.cargo/bin proxy, which resolves per-directory from rust-toolchain.toml.
+        'sqls',
+        'taplo',
+        'terraform-ls',
+        'typescript-language-server',
+        'vue-language-server',
+        'yaml-language-server',
+        -- linters: ansible-lint runs inside ansiblels, golangci-lint through none-ls
+        'ansible-lint',
+        'golangci-lint',
+      },
+    },
   },
   {
     'folke/lazydev.nvim',
